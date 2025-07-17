@@ -1024,13 +1024,13 @@
                                 <li class="slide side-menu__label1">
                                     <a href="javascript:void(0)">Cài đặt</a>
                                 </li>
-                                {{-- <li class="slide">
-                                    <a href={{ route('permission.list') }} class="side-menu__item">Phân quyền</a>
-                                </li>
                                 <li class="slide">
-                                    <a href={{ route('role.list') }} class="side-menu__item">
+                                    <a href={{ route('roles.index') }} class="side-menu__item">
                                         Vai trò
                                     </a>
+                                </li>
+                                {{-- <li class="slide">
+                                    <a href={{ route('permission.list') }} class="side-menu__item">Phân quyền</a>
                                 </li> --}}
                             </ul>
                         </li>
@@ -1151,31 +1151,29 @@
     <script src={{ asset('assets/libs/@tarekraafat/autocomplete.js/autoComplete.min.js') }}></script>
 
     <!-- Color Picker JS -->
-    <script src={{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js') }}></script>
-
-    @stack('section-scripts')
+    {{-- <script src={{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js') }}></script> --}}
 
     <!-- Date & Time Picker JS -->
-    <script src={{ asset('assets/libs/flatpickr/flatpickr.min.js') }}></script>
-    <script src={{ asset("assets/js/date&time_pickers.js") }}></script>
+    {{-- <script src={{ asset('assets/libs/flatpickr/flatpickr.min.js') }}></script>
+    <script src={{ asset("assets/js/date&time_pickers.js") }}></script> --}}
 
 
     <!-- Apex Charts JS -->
-    <script src={{ asset('assets/libs/apexcharts/apexcharts.min.js') }}></script>
+    {{-- <script src={{ asset('assets/libs/apexcharts/apexcharts.min.js') }}></script> --}}
 
     <!-- Sales Dashboard -->
-    <script src={{ asset('assets/js/sales-dashboard.js') }}></script>
+    {{-- <script src={{ asset('assets/js/sales-dashboard.js') }}></script> --}}
 
     <!-- Custom JS -->
-    <script src={{ asset('assets/js/custom.js') }}></script>
+    {{-- <script src={{ asset('assets/js/custom.js') }}></script> --}}
 
 
     <!-- Custom-Switcher JS -->
-    <script src={{ asset('assets/js/custom-switcher.min.js') }}></script>
+    {{-- <script src={{ asset('assets/js/custom-switcher.min.js') }}></script> --}}
 
     <!-- Prism JS -->
-    <script src={{ asset('assets/libs/prismjs/prism.js') }}></script>
-    <script src={{ asset('assets/js/prism-custom.js') }}></script>
+    {{-- <script src={{ asset('assets/libs/prismjs/prism.js') }}></script>
+    <script src={{ asset('assets/js/prism-custom.js') }}></script> --}}
 
     <!-- Filepond JS -->
     <script src={{ asset('assets/libs/filepond/filepond.min.js') }}></script>
@@ -1202,25 +1200,24 @@
     <script src={{ asset('assets/js/fileupload.js') }}></script>
 
     <!-- Quill Editor JS -->
-    <script src={{ asset('assets/libs/quill/quill.js') }}></script>
+    {{-- <script src={{ asset('assets/libs/quill/quill.js') }}></script> --}}
 
     <!-- Internal Create Blog JS -->
-    <script src={{ asset('assets/js/blog-create.js') }}></script>
+    {{-- <script src={{ asset('assets/js/blog-create.js') }}></script> --}}
 
     <!-- Swiper JS -->
     <script src={{ asset('assets/libs/swiper/swiper-bundle.min.js') }}></script>
 
     <!-- Internal Product-Details JS -->
-    <script src={{ asset('assets/js/product-details.js') }}></script>
-
-    {{-- Admin JS --}}
-    <script src={{ asset('assets/js/admin.js') }}></script>
+    {{-- <script src={{ asset('assets/js/product-details.js') }}></script> --}}
 
     <!-- Particles JS -->
-    <script src={{ asset('assets/libs/particles.js/particles.js') }}></script>
+    {{-- <script src={{ asset('assets/libs/particles.js/particles.js') }}></script> --}}
 
-    <script src={{ asset('assets/js/error.js') }}></script>
+    {{-- <script src={{ asset('assets/js/error.js') }}></script> --}}
 
+    @vite(['resources/js/global.js', 'resources/js/app.js'])
+    @stack('section-scripts')
 </body>
 
 </html>
