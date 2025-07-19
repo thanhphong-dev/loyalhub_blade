@@ -1,0 +1,11 @@
+@import '../../shared/bootstrap/css/bootstrap.min.css';
+
+@import '../../shared/node-waves/waves.min.css';
+@import '../../shared/theme/app.css';
+@import '../../shared/theme/icons.css';
+@import '../../shared/theme/styles.css';
+@import '../../shared/simplebar/simplebar.min.css';
+@import '../../shared/@tarekraafat/autocomplete.js/css/autoComplete.css';
+@import '../../shared/prismjs/themes/prism-coy.min.css';
+@import '../../shared/swiper/swiper-bundle.min.css';
+

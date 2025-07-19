@@ -1,7 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
-    <!-- Start::app-content -->
     <div class="main-content app-content">
         <div class="container-fluid">
             <div class="mt-2">
@@ -155,7 +154,8 @@
                                                             <label for="description" class="form-label">
                                                                 {{ __('view.role.description') }}
                                                             </label>
-                                                            <textarea class="form-control" id="edit-description" name="description" placeholder="nhập nội dung..." rows="5"></textarea>
+                                                            <textarea class="form-control" id="edit-description" name="description" placeholder="nhập nội dung..."
+                                                                rows="5"></textarea>
                                                             @error('description')
                                                                 <small class="text-danger">{{ $message }}</small>
                                                             @enderror
@@ -200,10 +200,8 @@
                                                 <td> {{ $role->description }} </td>
                                                 <td>
                                                     <button class="btn btn-icon btn-sm btn-system btn-edit-role"
-                                                        type="button" data-toggle="tooltip"
-                                                        data-placement="top"
-                                                        data-role="{{ $role }}"
-                                                        title="Edit">
+                                                        type="button" data-toggle="tooltip" data-placement="top"
+                                                        data-role="{{ $role }}" title="Edit">
                                                         <i class="ri-edit-line"></i>
                                                     </button>
 
@@ -226,9 +224,8 @@
             </div>
         </div>
     </div>
-    @push('section-scripts')
 
-        @vite(['resources/js/pages/role/index.js']);
-
+    @push('page-scripts')
+        @vite(['resources/js/pages/role/index.js'])
     @endpush
 @endsection

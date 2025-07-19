@@ -9,8 +9,11 @@ export default defineConfig({
         laravel({
             input: [
 
+                'resources/css/auth.css',
+                'resources/js/auth.js',
+
+                'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/js/global.js',
                 ...jsFiles
             ],
             refresh: true,

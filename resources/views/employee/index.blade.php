@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <!-- Start::app-content -->
@@ -277,4 +277,5 @@
         </div>
     </div>
     <!-- End::app-content -->
+
 @endsection
