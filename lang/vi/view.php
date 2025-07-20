@@ -8,17 +8,51 @@ return [
         'description' => 'Mô tả',
     ],
     'button' => [
-        'confirm' => 'Xác nhận',
-        'create'  => 'Thêm mới',
-        'search'  => 'Tìm kiếm',
-        'cancel'  => 'Hủy',
-        'update'  => 'Chỉnh sửa',
+        'confirm'  => 'Xác nhận',
+        'create'   => 'Thêm mới',
+        'search'   => 'Tìm kiếm',
+        'cancel'   => 'Hủy',
+        'update'   => 'Chỉnh sửa',
+        'function' => 'Chức năng',
     ],
     'notyf' => [
-        'success' => 'Thêm mới dữ liệu thành công',
-        'error'   => 'Đã xảy ra lỗi thao tác vui lòng thử lại !',
+        'create'       => 'Thêm mới dữ liệu thành công',
+        'update'       => 'Cập nhập dữ liệu thành công',
+        'delete'       => 'Xóa dữ liệu thành công',
+        'error'        => 'Đã xảy ra lỗi thao tác vui lòng thử lại !',
+        'notification' => 'Thông báo',
+        'confirm'      => 'Bạn có chắc chắn muốn xóa không ?',
+        'btn_confirm'  => 'Có',
+        'btn_cancel'   => 'Không',
     ],
     'data' => [
         'null' => 'Không có dữ liệu hiển thị !',
     ],
+    'placeholder' => [
+        'name'        => 'nhập tên...',
+        'description' => 'nhập mô tả...',
+    ],
+    'vesion' => [
+        'name'   => 'Loyal Hub version @2025',
+        'system' => 'Wind Lập Trình',
+    ],
+    'header' => [
+        'title'   => 'Loyal Hub',
+        'content' => 'Nền tảng quản lý học viên, đặt lịch, chăm sóc khách hàng toàn diện qua Zalo Mini App & Website.
+                    Dành riêng cho trung tâm đào tạo, spa, nha khoa, salon và phòng gym',
+        'keywords' => 'Phần mềm đặt lịch, Quản lý học viên, Chăm sóc khách hàng, Zalo mini app, Phần mềm spa, Phần mềm trung tâm đào tạo, Phần mềm phòng gym, Phần mềm nha khoa, Loyalty khách hàng',
+    ],
+    'sidebar' => [
+        'module' => [
+            'setting'        => 'Cài đặt',
+            'role'           => 'Vai trò',
+            'system'         => 'Hệ thống',
+            'employee'       => 'Nhân sự',
+            'manager_system' => 'Quản trị hệ thống',
+        ],
+        'menu' => [
+            'list' => 'Danh sách',
+        ],
+    ],
+
 ];

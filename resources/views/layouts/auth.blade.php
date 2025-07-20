@@ -8,7 +8,7 @@
 
     <link rel="icon" href={{ asset('images/logo/favicon.png') }} type="image/x-icon">
 
-    <title>{{ config('app.name', 'Wind Lập Trình') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">

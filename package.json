@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "jquery-ui": "^1.14.1",
-        "notyf": "^3.10.0"
+        "notyf": "^3.10.0",
+        "sweetalert2": "^11.22.2"
     }
 }

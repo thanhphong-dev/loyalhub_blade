@@ -30,10 +30,11 @@ class RoleRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.string'        => __('validation.string', ['name' => __('view.role.name')]),
-            'name.max'           => __('validation.max.string', ['name' => __('view.role.name')]),
-            'description.string' => __('validation.string', ['name' => __('view.role.description')]),
-
+            'name.required'        => __('validation.required', ['attribute' => __('view.role.name')]),
+            'name.string'          => __('validation.string', ['attribute' => __('view.role.name')]),
+            'name.max'             => __('validation.max.string', ['attribute' => __('view.role.name')]),
+            'description.required' => __('validation.required', ['attribute' => __('view.role.description')]),
+            'description.string'   => __('validation.string', ['attribute' => __('view.role.description')]),
         ];
     }
 }

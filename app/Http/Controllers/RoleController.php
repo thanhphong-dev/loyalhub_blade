@@ -6,7 +6,8 @@ use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use App\Services\RoleService;
 use Exception;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 
 class RoleController extends Controller
 {
@@ -17,47 +18,70 @@ class RoleController extends Controller
         $this->roleService = $roleService;
     }
 
-    public function index()
+    /**
+     * Return view index
+     *
+     * @return View
+     */
+    public function index(): View
     {
         $roles = $this->roleService->getAllRole();
 
         return view('role.index', compact('roles'));
     }
 
-    public function create(RoleRequest $roleRequest)
+    /**
+     * Create Role
+     *
+     * @param  \App\Http\Requests\RoleRequest  $roleRequest
+     * @return JsonResponse
+     */
+    public function create(RoleRequest $roleRequest): JsonResponse
     {
         try {
             $data = $roleRequest->validated();
             $this->roleService->createRole($data);
 
-            return $this->success($data, __('view.notyf.success'));
+            return $this->success($data, __('view.notyf.create'));
         } catch (Exception $e) {
-            Log::error($e->getMessage());
-
-            return $this->error($data, __('view.notyf.error'));
+            return $this->error($e->getMessage(), $data, __('view.notyf.error'));
         }
     }
 
-    public function update(RoleRequest $roleRequest)
+    /**
+     * Update Role
+     *
+     * @param  \App\Http\Requests\RoleRequest  $roleRequest
+     * @return JsonResponse
+     */
+    public function update(RoleRequest $roleRequest): JsonResponse
     {
         try {
-            $role = $roleRequest->id();
-            $data = $roleRequest->validated();
+            $roleId = $roleRequest->input('id');
+            $data   = $roleRequest->validated();
 
-            $this->roleService->updateRole($role, $data);
-            notyf(__('view.notyf.success'));
+            $this->roleService->updateRole($roleId, $data);
 
-            return redirect()->back();
+            return $this->success($data, __('view.notyf.update'));
         } catch (Exception $e) {
-            Log::error($e->getMessage());
-            notyf()->error(__('view.notyf.error'));
-
-            return redirect()->back();
+            return $this->error($e->getMessage(), null, __('view.notyf.error'));
         }
     }
 
-    public function destroy(Role $role)
+    /**
+     * Destroy role
+     *
+     * @param  \App\Models\Role  $role
+     * @return JsonResponse
+     */
+    public function destroy(Role $role): JsonResponse
     {
-        //
+        try {
+            $this->roleService->deleteRole($role);
+
+            return $this->success($role, __('view.notyf.delete'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage(), null, __('view.notyf.error'));
+        }
     }
 }

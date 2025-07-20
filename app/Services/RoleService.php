@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Role;
 use App\Repositories\RoleRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class RoleService
 {
@@ -26,14 +27,15 @@ class RoleService
         return $this->roleRepository->create($data);
     }
 
-    public function updateRole(Role $role, array $data)
+    public function updateRole(int $roleId, array $data)
     {
-        $role->fill($data);
+        $role = Role::find($roleId);
 
-        if ($role->isDirty()) {
-            return $this->roleRepository->update($data);
-        }
+        return $this->roleRepository->update($role, $data);
+    }
 
-        return false;
+    public function deleteRole(Model $model)
+    {
+        return $this->roleRepository->destroy($model);
     }
 }

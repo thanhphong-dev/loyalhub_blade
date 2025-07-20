@@ -3,34 +3,6 @@
 @section('content')
     <div class="main-content app-content">
         <div class="container-fluid">
-            <div class="mt-2">
-                {{-- alert delete  --}}
-                <div id="overlay" class="overlay d-none">
-                    <div class="alert">
-                        <div class="card p-0 bg-white border-0">
-                            <div class="alert custom-alert1 alert-danger">
-                                <div class="text-center px-5 pb-0 svg-danger">
-                                    <svg class="custom-alert-icon" xmlns="http://www.w3.org/2000/svg" height="1.5rem"
-                                        viewBox="0 0 24 24" width="1.5rem" fill="#000000">
-                                        <path d="M0 0h24v24H0z" fill="none" />
-                                        <path
-                                            d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z" />
-                                    </svg>
-                                    <h5>Thông báo</h5>
-                                    <p class="">Bạn chắc chắc muốn xóa thông tin này!</p>
-                                    <div class="">
-                                        <button class="btn btn-outline-dark m-1 btn-cancel-delete">Hủy</button>
-                                        <a href="#" id="confirmDelete"
-                                            class="btn btn-danger btn-confirm-delete">Xóa</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- end alert delete  --}}
-            </div>
-            <!-- Page Header -->
             <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
                 <div>
                     <nav aria-label="breadcrumb">
@@ -45,11 +17,8 @@
                         </ol>
                     </nav>
                 </div>
-
             </div>
-            <!-- Page Header Close -->
 
-            <!--Start:: row-4 -->
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card custom-card">
@@ -57,7 +26,6 @@
                             <div class="card-title">
                                 {{ __('view.role.model') }}
                             </div>
-
                         </div>
                         <div class="card-body">
                             <div class="row pd-0 mr-0 mb-2 align-items-center">
@@ -71,7 +39,6 @@
                                         </button>
                                     </div>
                                 </div>
-
                                 <div class="col-12 col-xl-9 text-xl-end text-start">
                                     <button class="btn btn-sm btn-system btn-wave waves-light" data-bs-toggle="modal"
                                         data-bs-target="#create-role">
@@ -79,6 +46,7 @@
                                         {{ __('view.role.model') }}
                                     </button>
                                 </div>
+
                                 <!-- Start::add role modal -->
                                 <div class="modal modal-lg fade mr-0" id="create-role" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -97,7 +65,7 @@
                                                                 {{ __('view.role.name') }}
                                                             </label>
                                                             <input type="text" class="form-control" id="name"
-                                                                name="name" placeholder="nhập tên...">
+                                                                name="name" placeholder="{{ __('view.placeholder.name') }}">
                                                             <small class="text-danger error-name"></small>
                                                         </div>
 
@@ -105,7 +73,8 @@
                                                             <label for="description" class="form-label">
                                                                 {{ __('view.role.description') }}
                                                             </label>
-                                                            <textarea class="form-control" id="description" name="description" placeholder="nhập nội dung..." rows="5"></textarea>
+                                                            <textarea class="form-control" id="description" name="description" rows="5">
+                                                            </textarea>
                                                             <small class="text-danger error-description"></small>
                                                         </div>
 
@@ -126,7 +95,8 @@
                                 <!-- End::add role modal -->
 
                                 <!-- Start::edit role modal -->
-                                <div class="modal modal-lg fade mr-0" id="update-role" tabindex="-1" aria-hidden="true">
+                                <div class="modal modal-lg fade mr-0" id="update-role-form" tabindex="-1"
+                                    aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -134,7 +104,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <form action="{{ route('roles.update') }}" method="post">
+                                            <form id="update-role" action="{{ route('roles.update') }}" method="post">
                                                 @csrf
                                                 <div class="modal-body px-4">
                                                     <div class="row gy-2">
@@ -144,21 +114,19 @@
                                                                 {{ __('view.role.name') }}
                                                             </label>
                                                             <input type="text" class="form-control" id="edit-name"
-                                                                name="name" placeholder="nhập tên...">
-                                                            @error('name')
-                                                                <small class="text-danger">{{ $message }}</small>
-                                                            @enderror
+                                                                name="name" placeholder="{{ __('view.placeholder.name') }}">
+                                                            <small class="text-danger error-name"></small>
                                                         </div>
 
                                                         <div class="col-xl-12">
                                                             <label for="description" class="form-label">
                                                                 {{ __('view.role.description') }}
                                                             </label>
-                                                            <textarea class="form-control" id="edit-description" name="description" placeholder="nhập nội dung..."
-                                                                rows="5"></textarea>
-                                                            @error('description')
-                                                                <small class="text-danger">{{ $message }}</small>
-                                                            @enderror
+                                                            <textarea class="form-control" id="edit-description" name="description"
+                                                                placeholder="{{ __('view.placeholder.description') }}"
+                                                                rows="5">
+                                                            </textarea>
+                                                            <small class="text-danger error-description"></small>
                                                         </div>
 
                                                     </div>
@@ -183,9 +151,9 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Tên</th>
-                                            <th scope="col">Mô tả</th>
-                                            <th scope="col">Chức năng</th>
+                                            <th scope="col">{{ __("view.role.name") }}</th>
+                                            <th scope="col">{{ __("view.role.description") }}</th>
+                                            <th scope="col">{{ __("view.button.function") }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -205,8 +173,11 @@
                                                         <i class="ri-edit-line"></i>
                                                     </button>
 
-                                                    <a href="#" class="btn btn-icon btn-sm btn-danger btn-delete">
-                                                        <i data-id="" class="ri-delete-bin-line"></i>
+                                                    <a href="javascript:void(0);"
+                                                        data-url="{{ route('roles.destroy', $role) }}"
+                                                        data-id="{{ $role->id }}"
+\                                                       class="btn btn-icon btn-sm btn-danger delete-role">
+                                                        <i class="ri-delete-bin-line"></i>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -217,6 +188,9 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                <div class="mt-2">
+                                    {{ $roles->links('pagination::bootstrap-5') }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -226,6 +200,14 @@
     </div>
 
     @push('page-scripts')
+        <script>
+            const getNotification = "{{ __('view.notyf.notification') }}"
+            const getConfirm = "{{ __('view.notyf.confirm') }}"
+            const getMessSuccess = "{{ __('view.notyf.delete') }}"
+            const getMessError = "{{ __('view.notyf.error') }}"
+            const btnSubmit = "{{ __('view.notyf.btn_confirm') }}"
+            const btnCancel = "{{ __('view.notyf.btn_cancel') }}"
+        </script>
         @vite(['resources/js/pages/role/index.js'])
     @endpush
 @endsection

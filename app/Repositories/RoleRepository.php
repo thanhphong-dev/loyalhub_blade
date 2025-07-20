@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\BaseRepositoryInterface;
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Model;
 
 class RoleRepository implements BaseRepositoryInterface
 {
@@ -24,8 +25,21 @@ class RoleRepository implements BaseRepositoryInterface
         return $this->role->create($data);
     }
 
-    public function update(array $data)
+    public function update(Model $model, array $data)
     {
-        return $this->role->update($data);
+        $model->fill($data);
+
+        if ($model->isDirty()) {
+            $model->save();
+
+            return $model;
+        }
+
+        return false;
+    }
+
+    public function destroy(Model $model)
+    {
+        return $model->delete();
     }
 }

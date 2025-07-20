@@ -1,2 +1,2 @@
 @import './plugins/index.css';
-@import './resources/shared/app/css/login.css';
+@import '../shared/app/css/login.css';

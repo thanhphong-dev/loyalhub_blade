@@ -8,11 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Loyal Hub </title>
-    <meta name="Description" content="Quản trị website Wind Lập Trình">
-    <meta name="Author" content="Quản trị website Wind Lập Trình">
-    <meta name="keywords"
-        content="Quản trị website Wind Lập Trình">
+    <title>{{ __("view.header.title") }}</title>
+
+    <meta name="description" content="{{ __('view.header.content') }}">
+    <meta name="author" content="{{ __("view.vesion.system") }}">
+    <meta name="keywords" content="{{ __('view.header.keywords') }}">
 
     <link rel="icon" href="#" type="image/x-icon">
 
@@ -788,10 +788,10 @@
 
         <footer class="footer mt-auto py-3 bg-white text-center">
             <div class="container">
-                <span class="text-muted"> Manager Website <span id="year"></span> <a
-                        href="javascript:void(0);" class="text-dark fw-medium"></a>.
-                    Designed with by <a href="https://windlaptrinh.com/" target="_blank">
-                        <span class="fw-medium text-primary">Wind Lập Trình</span>
+                <span class="text-muted"> {{ __("view.vesion.name") }} <span id="year"></span>
+                    <a href="javascript:void(0);" class="text-dark fw-medium"></a>
+                    <a href="https://windlaptrinh.com/" target="_blank">
+                        <span class="fw-medium text-primary">{{ __("view.vesion.system") }}</span>
                     </a>
                 </span>
             </div>
@@ -823,7 +823,7 @@
     </div>
     <div id="responsive-overlay"></div>
 
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/global.js','resources/js/app.js'])
     @stack('page-scripts')
 </body>
 
