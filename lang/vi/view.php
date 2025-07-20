@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'employee' => [
+        'model' => 'Nhân sự',
+        'list'  => 'Danh sách',
+        'frist_name' => 'Họ đệm',
+        'last_name' => 'Tên',
+        'full_name' => 'Họ và tên',
+        'address' => 'Địa chỉnh',
+        'avatar' => 'Ảnh đại diện',
+        'email' => 'Email',
+        'role' => 'Vai trò',
+        'phone_number' => 'Số điện thoại'
+    ],
     'role' => [
         'list'        => 'Danh sách',
         'model'       => 'Vai trò',
