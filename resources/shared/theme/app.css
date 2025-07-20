@@ -1,0 +1,31 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1040; /* Đảm bảo nằm trên các thành phần khác */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.overlay .alert {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+#description-editor{
+    height: auto;
+}
+
+.btn-system{
+    color: white;
+    background-color: #513da8 !important;
+}
+.btn-system:hover {
+    background-color: #DBC5FF !important;
+    transition: 0.3s
+}
+
