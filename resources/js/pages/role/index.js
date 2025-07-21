@@ -12,8 +12,7 @@ $(document).ready(function () {
 
     $(".btn-edit-role").on("click", function () {
         const role = $(this).data("role");
-        console.log("role:", role);
-        console.log("role id:", role.id);
+
         $("#edit-id").val(role.id);
         $("#edit-name").val(role.name);
         $("#edit-description").val(role.description);

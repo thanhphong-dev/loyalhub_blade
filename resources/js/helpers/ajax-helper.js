@@ -3,20 +3,22 @@ export function submitAjaxForm(config) {
     if ($form.length === 0) return;
 
     const $modal = $(config.modalSelector);
-
     $form.find('.text-danger').text('');
+
+    const formData = new FormData($form[0]);
 
     $.ajax({
         type: $form.attr('method'),
         url: $form.attr('action'),
-        data: $form.serialize(),
+        data: formData,
         dataType: 'json',
+        processData: false,
+        contentType: false,
         success: function (data) {
             if (data.status) {
                 if ($modal.length) $modal.modal('hide');
                 $form[0].reset();
                 notyf.success(data.message || 'Thành công');
-
                 if (config.reload) setTimeout(() => location.reload(), 1000);
             } else {
                 notyf.error(data.message || 'Thất bại');

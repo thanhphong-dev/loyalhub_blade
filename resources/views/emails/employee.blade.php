@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #916cff 0%, #3f126d 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -42,7 +42,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #916cff 0%, #3f126d 100%);
             padding: 40px 30px;
             text-align: center;
             position: relative;
@@ -104,12 +104,12 @@
             border-radius: 15px;
             padding: 25px;
             margin: 30px 0;
-            border-left: 5px solid #667eea;
+            border-left: 5px solid #513da8;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.08);
         }
 
         .user-info h3 {
-            color: #667eea;
+            color: #513da8;
             margin-bottom: 15px;
             font-size: 18px;
         }
@@ -144,7 +144,7 @@
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #916cff 0%, #3f126d 100%);
             color: white;
             padding: 15px 40px;
             text-decoration: none;
@@ -174,7 +174,7 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 15px 30px rgba(153, 80, 255, 0.4);
         }
 
         .footer-email {

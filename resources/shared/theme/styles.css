@@ -79,11 +79,13 @@ typography
   --orange-rgb: 254, 124, 88;
   --pink-rgb: 254, 84, 155;
   --teal-rgb: 0, 216, 216;
-  --purple-rgb: 123, 118, 254;
+  --purple-rgb: 81, 61, 168;
   --green-rgb: 1, 239, 140;
   --default-body-bg-color: rgb(var(--body-bg-rgb));
   --primary-color: rgb(var(--primary-rgb));
   --primary-border: rgb(var(--primary-rgb));
+  --purple-color:rgb(var(--purple-rgb));
+  --purple-border:rgb(var(--purple-rgb));
   --primary01: rgba(var(--primary-rgb), 0.1);
   --primary02: rgba(var(--primary-rgb), 0.2);
   --primary03: rgba(var(--primary-rgb), 0.3);
@@ -7243,7 +7245,7 @@ input[type=range]::-webkit-slider-runnable-track {
   transition: color 0.15s ease-in;
 }
 .tab-content .tab-pane {
-  padding: 1rem;
+  /* padding: 1rem; */
   /* border: 1px solid var(--default-border); */
   border-radius: 0.25rem;
   color: var(--default-text-color);
@@ -7543,14 +7545,14 @@ input[type=range]::-webkit-slider-runnable-track {
   background-color: rgb(var(--light-rgb));
 }
 .page-link:hover {
-  color: var(--primary-color);
+  color: var(--purple-color);
   background-color: rgb(var(--light-rgb));
   border-color: var(--default-border);
 }
 .page-item.active .page-link {
   color: #fff;
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: var(--purple-color);
+  border-color: var(--purple-color);
 }
 .disabled > .page-link, .page-link.disabled {
   color: var(--default-text-color);
@@ -7584,7 +7586,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .pagination-style-1 .pagination .page-item.active .page-link {
   border-radius: 0.25rem;
-  background-color: var(--primary-color);
+  background-color: var(--purple);
   color: #fff;
 }
 .pagination-style-1 .pagination .page-item.active:hover .page-link {

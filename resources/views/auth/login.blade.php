@@ -70,7 +70,7 @@
 
                         <div class="row mb-0">
                             <div class="input-group mb-3 col-12">
-                                <button type="submit" class="btn btn-lg btn-login text-white w-100 fs-6">
+                                <button type="submit" class="btn btn-lg btn-purple text-white w-100 fs-6">
                                     {{ __('Đăng nhập') }}
                                 </button>
                             </div>

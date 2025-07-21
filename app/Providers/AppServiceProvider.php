@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Observers\EmployeeObserve;
+use App\Models\User;
 use App\Observers\EmployeeObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +23,5 @@ class AppServiceProvider extends ServiceProvider
         }
 
         User::observe(EmployeeObserver::class);
-
     }
 }

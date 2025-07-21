@@ -10,13 +10,13 @@ class EmployeeRepository implements BaseRepositoryInterface
 {
     protected $employee;
 
-    public function __construct(User $employee) {
+    public function __construct(User $employee)
+    {
         $this->employee = $employee;
     }
 
     public function get(int $perPage)
     {
-
         return $this->employee->paginate($perPage);
     }
 

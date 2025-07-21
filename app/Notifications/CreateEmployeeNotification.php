@@ -5,16 +5,16 @@ namespace App\Notifications;
 use App\Mail\EmployeeCreateMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CreateEmployeeNotification extends Notification
+class CreateEmployeeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     private string $planinPassword;
 
     public array $mailData;
+
     public function __construct($planinPassword)
     {
         $this->planinPassword = $planinPassword;
@@ -36,21 +36,20 @@ class CreateEmployeeNotification extends Notification
     public function toMail(object $notifiable): EmployeeCreateMail
     {
         $this->mailData = [
-            'from' => config('mail.from.address'),
+            'from'      => config('mail.from.address'),
             'form_name' => config('mail.from.name'),
-            'to' => $notifiable->email ?? null,
-            'subject' => __('mail.create.user.subject'),
+            'to'        => $notifiable->email ?? null,
+            'subject'   => __('mail.create.user.subject'),
         ];
 
         $data = [
-            'full_name' => $notifiable->frist_name. ''. $notifiable->last_name,
-            'email' => $notifiable->email,
+            'full_name'      => $notifiable->frist_name.''.$notifiable->last_name,
+            'email'          => $notifiable->email,
             'plain_password' => $this->planinPassword,
-            'url' => config('app.url'),
-            'app_name' => config('app.name'),
+            'url'            => config('app.url'),
+            'app_name'       => config('app.name'),
         ];
 
         return (new EmployeeCreateMail($data))->to($notifiable->email);
     }
-
 }

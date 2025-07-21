@@ -2,16 +2,21 @@
 
 return [
     'employee' => [
-        'model' => 'Nhân sự',
-        'list'  => 'Danh sách',
-        'frist_name' => 'Họ đệm',
-        'last_name' => 'Tên',
-        'full_name' => 'Họ và tên',
-        'address' => 'Địa chỉnh',
-        'avatar' => 'Ảnh đại diện',
-        'email' => 'Email',
-        'role' => 'Vai trò',
-        'phone_number' => 'Số điện thoại'
+        'model'            => 'Nhân sự',
+        'list'             => 'Danh sách',
+        'frist_name'       => 'Họ đệm',
+        'last_name'        => 'Tên',
+        'full_name'        => 'Họ và tên',
+        'address'          => 'Địa chỉ',
+        'avatar'           => 'Ảnh đại diện',
+        'email'            => 'Email',
+        'role'             => 'Vai trò',
+        'phone_number'     => 'Số điện thoại',
+        'change_password'  => 'Mật khẩu',
+        'new_password'     => 'Mật khẩu mới',
+        'confirm_password' => 'Nhập lại mật khẩu',
+        'informartion'     => 'Thông tin',
+        'current_password' => 'Mật khẩu',
     ],
     'role' => [
         'list'        => 'Danh sách',
@@ -26,6 +31,7 @@ return [
         'cancel'   => 'Hủy',
         'update'   => 'Chỉnh sửa',
         'function' => 'Chức năng',
+        'delete'   => 'Xóa',
     ],
     'notyf' => [
         'create'       => 'Thêm mới dữ liệu thành công',

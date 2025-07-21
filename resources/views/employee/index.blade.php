@@ -37,14 +37,14 @@
                                         <input type="text" class="form-control form-control-sm"
                                             placeholder="tìm kiếm nhân sự..." aria-label="tìm kiếm nhân sự..."
                                             aria-describedby="button-addon1">
-                                        <button class="btn btn-system btn-wave" type="button" id="button-addon1">
+                                        <button class="btn btn-purple btn-wave" type="button" id="button-addon1">
                                             {{ __('view.button.search') }}
                                         </button>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-xl-9 text-xl-end text-start">
-                                    <button class="btn btn-sm btn-system btn-wave waves-light" data-bs-toggle="modal"
+                                    <button class="btn btn-sm btn-purple btn-wave waves-light" data-bs-toggle="modal"
                                         data-bs-target="#create-employee">
                                         <i class="ri-add-line fw-medium align-middle me-1"></i>
                                         {{ __('view.employee.model') }}
@@ -60,78 +60,271 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body px-4">
-                                                <div class="row gy-2">
-                                                    <div class="col-xl-6 col-12">
-                                                        <label for="frist_name" class="form-label">
-                                                            {{ __('view.employee.frist_name') }}
-                                                            <span class="text-danger">*</span>
-                                                        </label>
-                                                        <input type="text" class="form-control" id="frist_name"
-                                                            value="{{ old('frist_name') }}" name="frist_name">
-                                                        <small class="text-danger error-frist_name"></small>
-                                                    </div>
-                                                    <div class="col-xl-6 col-12">
-                                                        <label for="last_name" class="form-label">
-                                                            {{ __('view.employee.last_name') }}
-                                                            <span class="text-danger">*</span>
-                                                        </label>
-                                                        <input type="text" class="form-control" id="last_name"
-                                                            value="{{ old('last_name') }}" name="last_name">
-                                                        <small class="text-danger error-last_name"></small>
-                                                    </div>
-                                                    <div class="col-xl-6 col-12">
-                                                        <label for="email" class="form-label">
-                                                            {{ __('view.employee.email') }}
-                                                            <span class="text-danger">*</span>
-                                                        </label>
-                                                        <input type="text" class="form-control" id="email"
-                                                            value="{{ old('email') }}" name="email">
-                                                        <small class="text-danger error-email"></small>
-                                                    </div>
-                                                    <div class="col-xl-6 col-12">
-                                                        <label for="phone_number" class="form-label">
-                                                            {{ __('view.employee.phone_number') }}
-                                                            <span class="text-danger">*</span>
-                                                        </label>
-                                                        <input type="text" class="form-control" id="phone_number"
-                                                            value="{{ old('phone_number') }}" name="phone_number">
-                                                        <small class="text-danger error-phone_number"></small>
-                                                    </div>
-                                                    <div class="col-xl-6 col-12">
-                                                        <label for="address" class="form-label">
-                                                            {{ __('view.employee.address') }}
-                                                            <span class="text-danger">*</span>
-                                                        </label>
-                                                        <input type="text" class="form-control" id="address"
-                                                            value="{{ old('address') }}" name="address">
-                                                        <small class="text-danger error-address"></small>
-                                                    </div>
-                                                    <div class="col-xl-6 col-12">
-                                                        <label for="role" class="form-label">
-                                                            {{ __('view.employee.role') }}
-                                                            <span class="text-danger">*</span>
-                                                        </label>
-                                                        <select name="parent_id" class="form-control" id="parent_id">
-                                                            @foreach ($roles as $role)
-                                                                <option value="{{ $role->id }}">
-                                                                    {{ $role->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                                            <form id="create-employee-form" action="{{ route('employees.create') }}"
+                                                method="post">
+                                                @csrf
+                                                <div class="modal-body px-4">
+                                                    <div class="row gy-2">
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="frist_name" class="form-label">
+                                                                {{ __('view.employee.frist_name') }}
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="frist_name"
+                                                                value="{{ old('frist_name') }}" name="frist_name">
+                                                            <small class="text-danger error-frist_name"></small>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="last_name" class="form-label">
+                                                                {{ __('view.employee.last_name') }}
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="last_name"
+                                                                value="{{ old('last_name') }}" name="last_name">
+                                                            <small class="text-danger error-last_name"></small>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="email" class="form-label">
+                                                                {{ __('view.employee.email') }}
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="email"
+                                                                value="{{ old('email') }}" name="email">
+                                                            <small class="text-danger error-email"></small>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="phone_number" class="form-label">
+                                                                {{ __('view.employee.phone_number') }}
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="phone_number"
+                                                                value="{{ old('phone_number') }}" name="phone_number">
+                                                            <small class="text-danger error-phone_number"></small>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="address" class="form-label">
+                                                                {{ __('view.employee.address') }}
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="address"
+                                                                value="{{ old('address') }}" name="address">
+                                                            <small class="text-danger error-address"></small>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="role_id" class="form-label">
+                                                                {{ __('view.employee.role') }}
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select name="role_id" class="form-control" id="role_id">
+                                                                @foreach ($roles as $role)
+                                                                    <option value="{{ $role->id }}">
+                                                                        {{ $role->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            <small class="text-danger error-role_id"></small>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light"
-                                                    data-bs-dismiss="modal">{{ __('view.button.cancel') }}</button>
-                                                <button type="submit"
-                                                    class="btn btn-system">{{ __('view.button.confirm') }}</button>
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light"
+                                                        data-bs-dismiss="modal">{{ __('view.button.cancel') }}</button>
+                                                    <button type="submit"
+                                                        class="btn btn-purple">{{ __('view.button.confirm') }}</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- End::add employee modal -->
+
+                                <!-- Start::update employee modal -->
+                                <div class="modal modal-lg fade mr-0" id="update-employee" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h6 class="modal-title">{{ __('view.button.update') }}</h6>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <form id="update-employee-form" action="{{ route('employees.update') }}"
+                                                enctype="multipart/form-data" method="post">
+                                                @csrf
+                                                <div class="modal-body px-4">
+
+                                                    <!-- Tabs navigation -->
+                                                    <ul class="nav nav-tabs mb-3" id="employeeTab" role="tablist">
+                                                        <li class="nav-item" role="presentation">
+                                                            <button class="nav-link active" id="info-tab"
+                                                                data-bs-toggle="tab" data-bs-target="#info"
+                                                                type="button" role="tab" aria-controls="info"
+                                                                aria-selected="true">
+                                                                {{ __('view.employee.informartion') }}
+                                                            </button>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <button class="nav-link" id="password-tab"
+                                                                data-bs-toggle="tab" data-bs-target="#password"
+                                                                type="button" role="tab" aria-controls="password"
+                                                                aria-selected="false">
+                                                                {{ __('view.employee.change_password') }}
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+
+                                                    <!-- Tabs content -->
+                                                    <div class="tab-content" id="employeeTabContent">
+
+                                                        <input type="hidden" id="edit-id" name="id">
+
+                                                        <!-- Tab 1: Thông tin -->
+                                                        <div class="tab-pane fade show active" id="info"
+                                                            role="tabpanel" aria-labelledby="info-tab">
+                                                            <div class="row gy-2">
+                                                                <div class="col-xl-4 col-12 p-0 m-0">
+                                                                    <div class="col-12">
+                                                                        <img id="preview-avatar" class="rounded-circle"
+                                                                            style="width: 200px; height: 200px;"
+                                                                            src="{{ asset('images/employee/avatar.png') }}"
+                                                                            alt="Avatar Preview">
+                                                                    </div>
+
+                                                                    <div class="col-12 mt-4">
+                                                                        <input type="file" id="avatar_url"
+                                                                            name="avatar_url" accept="image/*">
+                                                                        @error('avatar_url')
+                                                                            <small
+                                                                                class="text-danger">{{ $message }}</small>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-8 col-12 p-0 m-0">
+                                                                    <div class="row p-0 m-0">
+                                                                        <div class="col-xl-6 col-12">
+                                                                            <label for="frist_name" class="form-label">
+                                                                                {{ __('view.employee.frist_name') }} <span
+                                                                                    class="text-danger">*</span>
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="edit-frist_name" name="frist_name"
+                                                                                value="{{ old('frist_name') }}">
+                                                                            <small
+                                                                                class="text-danger error-frist_name"></small>
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-12">
+                                                                            <label for="last_name" class="form-label">
+                                                                                {{ __('view.employee.last_name') }} <span
+                                                                                    class="text-danger">*</span>
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="edit-last_name" name="last_name"
+                                                                                value="{{ old('last_name') }}">
+                                                                            <small
+                                                                                class="text-danger error-last_name"></small>
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-12">
+                                                                            <label for="email" class="form-label">
+                                                                                {{ __('view.employee.email') }} <span
+                                                                                    class="text-danger">*</span>
+                                                                            </label>
+                                                                            <input type="email" class="form-control"
+                                                                                id="edit-email" name="email"
+                                                                                value="{{ old('email') }}">
+                                                                            <small class="text-danger error-email"></small>
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-12">
+                                                                            <label for="phone_number" class="form-label">
+                                                                                {{ __('view.employee.phone_number') }}
+                                                                                <span class="text-danger">*</span>
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="edit-phone_number" name="phone_number"
+                                                                                value="{{ old('phone_number') }}">
+                                                                            <small
+                                                                                class="text-danger error-phone_number"></small>
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-12">
+                                                                            <label for="address" class="form-label">
+                                                                                {{ __('view.employee.address') }} <span
+                                                                                    class="text-danger">*</span>
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="edit-address" name="address"
+                                                                                value="{{ old('address') }}">
+                                                                            <small
+                                                                                class="text-danger error-address"></small>
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-12">
+                                                                            <label for="role_id" class="form-label">
+                                                                                {{ __('view.employee.role') }} <span
+                                                                                    class="text-danger">*</span>
+                                                                            </label>
+                                                                            <select name="role_id" class="form-control"
+                                                                                id="edit-role_id">
+                                                                                @foreach ($roles as $role)
+                                                                                    <option value="{{ $role->id }}">
+                                                                                        {{ $role->name }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            <small
+                                                                                class="text-danger error-role_id"></small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Tab 2: Thay đổi mật khẩu -->
+                                                        <div class="tab-pane fade" id="password" role="tabpanel"
+                                                            aria-labelledby="password-tab">
+                                                            <div class="row gy-2 mt-2">
+                                                                <div class="col-12">
+                                                                    <label for="current_password" class="form-label">
+                                                                        {{ __('view.employee.password') }}
+                                                                    </label>
+                                                                    <input type="password" class="form-control"
+                                                                        name="current_password" id="current_password">
+                                                                    <small
+                                                                        class="text-danger error-current_password"></small>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label for="new_password" class="form-label">
+                                                                        {{ __('view.employee.new_password') }}
+                                                                    </label>
+                                                                    <input type="password" class="form-control"
+                                                                        name="new_password" id="new_password">
+                                                                    <small class="text-danger error-new_password"></small>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label for="confirm_password" class="form-label">
+                                                                        {{ __('view.employee.confirm_password') }}
+                                                                    </label>
+                                                                    <input type="password" class="form-control"
+                                                                        name="confirm_password" id="confirm_password">
+                                                                    <small
+                                                                        class="text-danger error-confirm_password"></small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                                        {{ __('view.button.cancel') }}
+                                                    </button>
+                                                    <button type="submit" class="btn btn-purple">
+                                                        {{ __('view.button.confirm') }}
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End::update employee modal -->
+
                             </div>
 
                             <div class="table-responsive">
@@ -153,8 +346,8 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td scope="row">
-                                                    <span class="avatar avatar-xs me-2 online avatar-rounded">
-                                                        <img src={{ asset('assets/images/faces/3.jpg') }} alt="img">
+                                                    <span class="avatar avatar-ms avatar-rounded">
+                                                        <img src={{ asset('images/employee/avatar.png') }} alt="img">
                                                     </span>
                                                 </td>
                                                 <td>{{ $employee->full_name }}</td>
@@ -162,28 +355,25 @@
                                                 <td>{{ $employee->phone_number }}</td>
                                                 <td>{{ $employee->address }}</td>
                                                 <td>
-                                                    <span
-                                                        class="badge bg-light text-dark">{{ $employee->role->name }}</span>
+                                                    <span class="badge bg-purple text-white">
+                                                        {{ $employee->role->name }}
+                                                    </span>
                                                 </td>
                                                 <td class="text-center">
-                                                    <div class="dropdown ms-2">
-                                                        <button
-                                                            class="btn btn-icon btn-secondary-light btn-sm btn-wave waves-light"
-                                                            type="button" data-bs-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <i class="ti ti-dots-vertical"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li>
-                                                                <a class="dropdown-item" href="javascript:void(0);"> Sửa
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="dropdown-item" href="javascript:void(0);"> Xóa
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                    <button class="btn btn-icon btn-sm btn-purple btn-edit-employee"
+                                                        type="button" data-toggle="tooltip" data-placement="top"
+                                                        data-employee="{{ $employee }}"
+                                                        title="{{ __('view.button.update') }}">
+                                                        <i class="ri-edit-line"></i>
+                                                    </button>
+
+                                                    <a href="javascript:void(0);"
+                                                        data-url="{{ route('employees.destroy', $employee) }}"
+                                                        data-id="{{ $employee->id }}"
+                                                        title="{{ __('view.button.delete') }}"
+                                                        class="btn btn-icon btn-sm btn-danger delete-role">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @empty
@@ -205,4 +395,8 @@
 
         </div>
     </div>
+
+    @push('page-scripts')
+        @vite(['resources/js/pages/employee/index.js'])
+    @endpush
 @endsection

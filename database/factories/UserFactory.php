@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'uuid'              => Str::uuid(),
             'email'             => fake()->unique()->safeEmail(),
             'address'           => '156 Le Loi',
-            'role_id' => 1,
+            'role_id'           => 1,
             'phone_number'      => 1,
             'email_verified_at' => now(),
             'password'          => static::$password ??= Hash::make('dev'),
