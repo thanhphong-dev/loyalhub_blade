@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Role;
+use App\Models\User;
 use App\Services\EmployeeService;
 use Exception;
 
@@ -40,20 +41,33 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request)
     {
         try {
-            $data       = $request->validated();
+            $data = $request->validated();
+            // dd($data);
             $employeeId = $request->input('id');
 
-            if (empty($data['password'])) {
-                unset($data['password']);
-            } else {
-                $data['password'] = Hash::make($data['password']);
+            $employee = User::find($employeeId);
+            // dd($employee);
+
+            if ($request->hasFile('avatar_url') && $request->file('avatar_url')->isValid()) {
+                $data['avatar_url'] = handleImageUpload($data['avatar_url'], $employee->avatar_url, 'employee');
             }
 
-            $this->employeeService->updateEmployee($employeeId, $data);
+            $this->employeeService->updateEmployee($employee, $data);
 
             return $this->success($data, __('view.notyf.update'));
         } catch (Exception $e) {
             return $this->error($e->getMessage(), $data, __('view.notyf.error'));
+        }
+    }
+
+    public function destroy(User $employee)
+    {
+        try {
+            $this->employeeService->deleteEmployee($employee);
+
+            return $this->success($employee, __('view.notyf.delete'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage(), __('view.notyf.error'));
         }
     }
 }

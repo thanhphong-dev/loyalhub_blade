@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\User;
 use App\Repositories\EmployeeRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class EmployeeService
 {
@@ -26,10 +26,19 @@ class EmployeeService
         return $this->employeeRepository->create($data);
     }
 
-    public function updateEmployee(int $employeeId, array $data)
+    public function updateEmployee(Model $model, array $data)
     {
-        $employee = User::find($employeeId);
+        if (empty($data['password'])) {
+            unset($data['password']);
+        } else {
+            $data['password'] = Hash::make($data['password']);
+        }
 
-        return $this->employeeRepository->update($employee, $data);
+        return $this->employeeRepository->update($model, $data);
+    }
+
+    public function deleteEmployee(Model $model)
+    {
+        return $this->employeeRepository->destroy($model);
     }
 }

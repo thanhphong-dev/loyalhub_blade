@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use LaravelWakeUp\FilterSort\Traits\FilterTrait;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use FilterTrait, HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'frist_name',
@@ -23,6 +24,19 @@ class User extends Authenticatable
         'role_id',
         'phone_number',
         'address',
+    ];
+
+    protected array $allowedFilters = ['frist_name', 'last_name', 'email', 'phone_number', 'address'];
+
+    protected array $multiColumnSearch = [
+        'search_field' => 'search',
+        'fields'       => [
+            'frist_name'   => 'like',
+            'last_name'    => 'like',
+            'email'        => 'like',
+            'phone_number' => 'like',
+            'address'      => 'like',
+        ],
     ];
 
     /**

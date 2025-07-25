@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 if (! function_exists('handleImageUpload')) {
@@ -22,11 +23,12 @@ if (! function_exists('handleImageUpload')) {
             }
 
             $fileName = time().'_'.$file->getClientOriginalName();
-
-            $path = $file->storeAs($path, $fileName, 'public');
+            $path     = $file->storeAs($path, $fileName, 'public');
 
             return $path;
         } catch (\Exception $e) {
+            Log::error($e->getMessage());
+
             return null;
         }
     }

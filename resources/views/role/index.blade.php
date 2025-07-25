@@ -30,14 +30,18 @@
                         <div class="card-body">
                             <div class="row pd-0 mr-0 mb-2 align-items-center">
                                 <div class="col-12 col-xl-3 mb-2 mb-xl-0">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm"
-                                            placeholder="tìm kiếm danh mục..." aria-label="tìm kiếm danh mục..."
-                                            aria-describedby="button-addon1">
-                                        <button class="btn btn-purple btn-wave" type="button" id="button-addon1">
-                                            {{ __('view.button.search') }}
-                                        </button>
-                                    </div>
+                                    <form action="{{ route('roles.index') }}" method="get">
+                                        <div class="input-group">
+                                            <input type="search" class="form-control form-control-sm" name='search'
+                                                value="{{ request('search') }}"
+                                                placeholder="{{ __('view.role.search') }}"
+                                                aria-label="{{ __('view.role.search') }}"
+                                                aria-describedby="button-addon1">
+                                            <button class="btn btn-purple btn-wave" type="submit" id="search">
+                                                {{ __('view.button.search') }}
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="col-12 col-xl-9 text-xl-end text-start">
                                     <button class="btn btn-sm btn-purple btn-wave waves-light" data-bs-toggle="modal"

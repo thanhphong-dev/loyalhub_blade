@@ -47,7 +47,6 @@ class CreateEmployeeRequest extends FormRequest
             'email.required'      => __('validation.required', ['attribute' => __('view.employee.email')]),
             'email.email'         => __('validation.email', ['attribute' => __('view.employee.email')]),
             'role_id.exists'      => __('validation.exists', ['attribute' => __('view.employee.role')]),
-
         ];
     }
 }

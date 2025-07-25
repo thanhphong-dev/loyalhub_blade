@@ -17,7 +17,11 @@ class EmployeeRepository implements BaseRepositoryInterface
 
     public function get(int $perPage)
     {
-        return $this->employee->paginate($perPage);
+        return $this->employee->query()
+            ->where('id', '!=', auth()->id())
+            ->filter(request())
+            ->paginate($perPage)
+            ->withQueryString();
     }
 
     public function create(array $data)

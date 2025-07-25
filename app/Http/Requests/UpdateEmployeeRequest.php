@@ -24,30 +24,47 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'avatar_url'   => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
-            'frist_name'   => ['required', 'string', 'max:255'],
-            'last_name'    => ['required', 'string', 'max:255'],
-            'email'        => ['required', 'email', Rule::unique('users')->ignore($this->id)],
-            'phone_number' => ['nullable', 'string'],
-            'address'      => ['nullable', 'string'],
-            'role_id'      => ['required', 'exists:roles,id'],
-            'password'     => ['nullable', Password::min(8)->uncompromised(), 'confirmed'],
+            'avatar_url'            => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'frist_name'            => ['required', 'string', 'max:255'],
+            'last_name'             => ['required', 'string', 'max:255'],
+            'email'                 => ['required', 'email', Rule::unique('users')->ignore($this->id)],
+            'phone_number'          => ['nullable', 'string'],
+            'address'               => ['nullable', 'string'],
+            'role_id'               => ['required', 'exists:roles,id'],
+            'current_password'      => ['required_with:password', 'current_password'],
+            'password'              => ['nullable', Password::min(8)->uncompromised(), 'confirmed'],
+            'password_confirmation' => ['same:password'],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'new_password'     => __('view.employee.new_password'),
-            'current_password' => __('view.employee.current_password'),
-            'confirm_password' => __('view.employee.confirm_password'),
+            'password'              => __('view.employee.new_password'),
+            'password_confirmation' => __('view.employee.password_confirmation'),
+            'frist_name'            => __('view.employee.frist_name'),
+            'last_name'             => __('view.employee.last_name'),
+            'address'               => __('view.employee.address'),
+            'avatar_url'            => __('view.employee.avatar'),
+            'email'                 => __('view.employee.email'),
+            'role_id'               => __('view.employee.role'),
+            'phone_number'          => __('view.employee.phone_number'),
         ];
     }
 
     public function messages(): array
     {
         return [
-            'password.confirmed' => __('passwords.confirmed', ['attribute' => __('view.employee.confirm_password')]),
+            'password.confirmed'  => __('passwords.confirmed', ['attribute' => __('view.employee.password_confirmation')]),
+            'avatar_url.image'    => __('validation.image', ['attribute' => __('view.employee.avatar')]),
+            'avatar_url.mimes'    => __('validation.mimetypes', ['attribute' => __('view.employee.avatar')]),
+            'frist_name.required' => __('validation.required', ['attribute' => __('view.employee.frist_name')]),
+            'frist_name.string'   => __('validation.string', ['attribute' => __('view.employee.frist_name')]),
+            'last_name.required'  => __('validation.required', ['attribute' => __('view.employee.last_name')]),
+            'last_name.string'    => __('validation.string', ['attribute' => __('view.employee.last_name')]),
+            'email.required'      => __('validation.required', ['attribute' => __('view.employee.email')]),
+            'email.email'         => __('validation.email', ['attribute' => __('view.employee.email')]),
+            'role_id.exists'      => __('validation.exists', ['attribute' => __('view.employee.role')]),
         ];
     }
 }

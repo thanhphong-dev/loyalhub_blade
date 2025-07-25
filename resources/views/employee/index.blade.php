@@ -32,15 +32,20 @@
                         </div>
                         <div class="card-body">
                             <div class="row pd-0 mr-0 mb-2 align-items-center">
+
                                 <div class="col-12 col-xl-3 mb-2 mb-xl-0">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm"
-                                            placeholder="tìm kiếm nhân sự..." aria-label="tìm kiếm nhân sự..."
-                                            aria-describedby="button-addon1">
-                                        <button class="btn btn-purple btn-wave" type="button" id="button-addon1">
-                                            {{ __('view.button.search') }}
-                                        </button>
-                                    </div>
+                                    <form action="{{ route('employees.index') }}" method="get">
+                                        <div class="input-group">
+                                            <input type="search" class="form-control form-control-sm" name='search'
+                                                value="{{ request('search') }}"
+                                                placeholder="{{ __('view.employee.search') }}"
+                                                aria-label="{{ __('view.employee.search') }}"
+                                                aria-describedby="button-addon1">
+                                            <button class="btn btn-purple btn-wave" type="submit" id="search">
+                                                {{ __('view.button.search') }}
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
 
                                 <div class="col-12 col-xl-9 text-xl-end text-start">
@@ -68,7 +73,6 @@
                                                         <div class="col-xl-6 col-12">
                                                             <label for="frist_name" class="form-label">
                                                                 {{ __('view.employee.frist_name') }}
-                                                                <span class="text-danger">*</span>
                                                             </label>
                                                             <input type="text" class="form-control" id="frist_name"
                                                                 value="{{ old('frist_name') }}" name="frist_name">
@@ -77,7 +81,6 @@
                                                         <div class="col-xl-6 col-12">
                                                             <label for="last_name" class="form-label">
                                                                 {{ __('view.employee.last_name') }}
-                                                                <span class="text-danger">*</span>
                                                             </label>
                                                             <input type="text" class="form-control" id="last_name"
                                                                 value="{{ old('last_name') }}" name="last_name">
@@ -86,7 +89,6 @@
                                                         <div class="col-xl-6 col-12">
                                                             <label for="email" class="form-label">
                                                                 {{ __('view.employee.email') }}
-                                                                <span class="text-danger">*</span>
                                                             </label>
                                                             <input type="text" class="form-control" id="email"
                                                                 value="{{ old('email') }}" name="email">
@@ -95,7 +97,6 @@
                                                         <div class="col-xl-6 col-12">
                                                             <label for="phone_number" class="form-label">
                                                                 {{ __('view.employee.phone_number') }}
-                                                                <span class="text-danger">*</span>
                                                             </label>
                                                             <input type="text" class="form-control" id="phone_number"
                                                                 value="{{ old('phone_number') }}" name="phone_number">
@@ -104,7 +105,6 @@
                                                         <div class="col-xl-6 col-12">
                                                             <label for="address" class="form-label">
                                                                 {{ __('view.employee.address') }}
-                                                                <span class="text-danger">*</span>
                                                             </label>
                                                             <input type="text" class="form-control" id="address"
                                                                 value="{{ old('address') }}" name="address">
@@ -113,7 +113,6 @@
                                                         <div class="col-xl-6 col-12">
                                                             <label for="role_id" class="form-label">
                                                                 {{ __('view.employee.role') }}
-                                                                <span class="text-danger">*</span>
                                                             </label>
                                                             <select name="role_id" class="form-control" id="role_id">
                                                                 @foreach ($roles as $role)
@@ -168,7 +167,7 @@
                                                                 data-bs-toggle="tab" data-bs-target="#password"
                                                                 type="button" role="tab" aria-controls="password"
                                                                 aria-selected="false">
-                                                                {{ __('view.employee.change_password') }}
+                                                                {{ __('view.employee.current_password') }}
                                                             </button>
                                                         </li>
                                                     </ul>
@@ -184,10 +183,10 @@
                                                             <div class="row gy-2">
                                                                 <div class="col-xl-4 col-12 p-0 m-0">
                                                                     <div class="col-12">
-                                                                        <img id="preview-avatar" class="rounded-circle"
+                                                                        <img id="edit-avatar_url" class="rounded-circle"
                                                                             style="width: 200px; height: 200px;"
-                                                                            src="{{ asset('images/employee/avatar.png') }}"
-                                                                            alt="Avatar Preview">
+                                                                            src="{{ old('avatar_url') ? old('avatar_url') : asset('images/employee/avatar.png') }}"
+                                                                            alt="{{ __('view.employee.avatar') }}">
                                                                     </div>
 
                                                                     <div class="col-12 mt-4">
@@ -203,8 +202,7 @@
                                                                     <div class="row p-0 m-0">
                                                                         <div class="col-xl-6 col-12">
                                                                             <label for="frist_name" class="form-label">
-                                                                                {{ __('view.employee.frist_name') }} <span
-                                                                                    class="text-danger">*</span>
+                                                                                {{ __('view.employee.frist_name') }}
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 id="edit-frist_name" name="frist_name"
@@ -212,10 +210,9 @@
                                                                             <small
                                                                                 class="text-danger error-frist_name"></small>
                                                                         </div>
-                                                                        <div class="col-xl-6 col-12">
+                                                                        <div class=" col-xl-6 col-12">
                                                                             <label for="last_name" class="form-label">
-                                                                                {{ __('view.employee.last_name') }} <span
-                                                                                    class="text-danger">*</span>
+                                                                                {{ __('view.employee.last_name') }}
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 id="edit-last_name" name="last_name"
@@ -223,20 +220,18 @@
                                                                             <small
                                                                                 class="text-danger error-last_name"></small>
                                                                         </div>
-                                                                        <div class="col-xl-6 col-12">
+                                                                        <div class="col-12 mt-2">
                                                                             <label for="email" class="form-label">
-                                                                                {{ __('view.employee.email') }} <span
-                                                                                    class="text-danger">*</span>
+                                                                                {{ __('view.employee.email') }}
                                                                             </label>
                                                                             <input type="email" class="form-control"
                                                                                 id="edit-email" name="email"
                                                                                 value="{{ old('email') }}">
                                                                             <small class="text-danger error-email"></small>
                                                                         </div>
-                                                                        <div class="col-xl-6 col-12">
+                                                                        <div class="col-12 mt-2">
                                                                             <label for="phone_number" class="form-label">
                                                                                 {{ __('view.employee.phone_number') }}
-                                                                                <span class="text-danger">*</span>
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 id="edit-phone_number" name="phone_number"
@@ -244,10 +239,9 @@
                                                                             <small
                                                                                 class="text-danger error-phone_number"></small>
                                                                         </div>
-                                                                        <div class="col-xl-6 col-12">
+                                                                        <div class="col-xl-6 col-12 mt-2">
                                                                             <label for="address" class="form-label">
-                                                                                {{ __('view.employee.address') }} <span
-                                                                                    class="text-danger">*</span>
+                                                                                {{ __('view.employee.address') }}
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 id="edit-address" name="address"
@@ -255,10 +249,9 @@
                                                                             <small
                                                                                 class="text-danger error-address"></small>
                                                                         </div>
-                                                                        <div class="col-xl-6 col-12">
+                                                                        <div class="col-xl-6 col-12 mt-2">
                                                                             <label for="role_id" class="form-label">
-                                                                                {{ __('view.employee.role') }} <span
-                                                                                    class="text-danger">*</span>
+                                                                                {{ __('view.employee.role') }}
                                                                             </label>
                                                                             <select name="role_id" class="form-control"
                                                                                 id="edit-role_id">
@@ -280,30 +273,22 @@
                                                             aria-labelledby="password-tab">
                                                             <div class="row gy-2 mt-2">
                                                                 <div class="col-12">
-                                                                    <label for="current_password" class="form-label">
-                                                                        {{ __('view.employee.password') }}
-                                                                    </label>
-                                                                    <input type="password" class="form-control"
-                                                                        name="current_password" id="current_password">
-                                                                    <small
-                                                                        class="text-danger error-current_password"></small>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <label for="new_password" class="form-label">
+                                                                    <label for="password" class="form-label">
                                                                         {{ __('view.employee.new_password') }}
                                                                     </label>
                                                                     <input type="password" class="form-control"
-                                                                        name="new_password" id="new_password">
-                                                                    <small class="text-danger error-new_password"></small>
+                                                                        name="password" id="new_password">
+                                                                    <small class="text-danger error-password"></small>
                                                                 </div>
                                                                 <div class="col-12">
-                                                                    <label for="confirm_password" class="form-label">
-                                                                        {{ __('view.employee.confirm_password') }}
+                                                                    <label for="password_confirmation" class="form-label">
+                                                                        {{ __('view.employee.password_confirmation') }}
                                                                     </label>
                                                                     <input type="password" class="form-control"
-                                                                        name="confirm_password" id="confirm_password">
+                                                                        name="password_confirmation"
+                                                                        id="password_confirmation">
                                                                     <small
-                                                                        class="text-danger error-confirm_password"></small>
+                                                                        class="text-danger error-password_confirmation"></small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -347,7 +332,8 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td scope="row">
                                                     <span class="avatar avatar-ms avatar-rounded">
-                                                        <img src={{ asset('images/employee/avatar.png') }} alt="img">
+                                                        <img src="{{ $employee->avatar_url ? asset('storage/' . $employee->avatar_url) : asset('images/employee/avatar.png') }}"
+                                                            alt="img">
                                                     </span>
                                                 </td>
                                                 <td>{{ $employee->full_name }}</td>
@@ -371,7 +357,7 @@
                                                         data-url="{{ route('employees.destroy', $employee) }}"
                                                         data-id="{{ $employee->id }}"
                                                         title="{{ __('view.button.delete') }}"
-                                                        class="btn btn-icon btn-sm btn-danger delete-role">
+                                                        class="btn btn-icon btn-sm btn-danger delete-employee">
                                                         <i class="ri-delete-bin-line"></i>
                                                     </a>
                                                 </td>
@@ -397,6 +383,14 @@
     </div>
 
     @push('page-scripts')
+        <script>
+            const getNotification = "{{ __('view.notyf.notification') }}"
+            const getConfirm = "{{ __('view.notyf.confirm') }}"
+            const getMessSuccess = "{{ __('view.notyf.delete') }}"
+            const getMessError = "{{ __('view.notyf.error') }}"
+            const btnSubmit = "{{ __('view.notyf.btn_confirm') }}"
+            const btnCancel = "{{ __('view.notyf.btn_cancel') }}"
+        </script>
         @vite(['resources/js/pages/employee/index.js'])
     @endpush
 @endsection

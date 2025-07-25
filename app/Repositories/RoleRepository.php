@@ -17,7 +17,10 @@ class RoleRepository implements BaseRepositoryInterface
 
     public function get(int $perPage)
     {
-        return $this->role->paginate($perPage);
+        return $this->role->query()
+            ->filter(request())
+            ->paginate($perPage)
+            ->withQueryString();
     }
 
     public function create(array $data)
