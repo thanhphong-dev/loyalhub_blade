@@ -1,11 +1,30 @@
 <?php
 
 return [
+    'employee' => [
+        'model'                 => 'Nhân sự',
+        'list'                  => 'Danh sách',
+        'frist_name'            => 'Họ đệm',
+        'last_name'             => 'Tên',
+        'full_name'             => 'Họ và tên',
+        'address'               => 'Địa chỉ',
+        'avatar'                => 'Ảnh đại diện',
+        'email'                 => 'Email',
+        'role'                  => 'Vai trò',
+        'phone_number'          => 'Số điện thoại',
+        'current_password'      => 'Mật khẩu',
+        'new_password'          => 'Mật khẩu mới',
+        'password_confirmation' => 'Nhập lại mật khẩu',
+        'informartion'          => 'Thông tin',
+        'password'              => 'Mật khẩu',
+        'search'                => 'tìm kiếm nhân sự...',
+    ],
     'role' => [
         'list'        => 'Danh sách',
         'model'       => 'Vai trò',
         'name'        => 'Tên',
         'description' => 'Mô tả',
+        'search'      => 'tìm kiếm vai trò...',
     ],
     'button' => [
         'confirm'  => 'Xác nhận',
@@ -14,6 +33,7 @@ return [
         'cancel'   => 'Hủy',
         'update'   => 'Chỉnh sửa',
         'function' => 'Chức năng',
+        'delete'   => 'Xóa',
     ],
     'notyf' => [
         'create'       => 'Thêm mới dữ liệu thành công',

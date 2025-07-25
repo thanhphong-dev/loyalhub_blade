@@ -3,21 +3,22 @@
 namespace App\Repositories;
 
 use App\Interfaces\BaseRepositoryInterface;
-use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
-class RoleRepository implements BaseRepositoryInterface
+class EmployeeRepository implements BaseRepositoryInterface
 {
-    protected $role;
+    protected $employee;
 
-    public function __construct(Role $role)
+    public function __construct(User $employee)
     {
-        $this->role = $role;
+        $this->employee = $employee;
     }
 
     public function get(int $perPage)
     {
-        return $this->role->query()
+        return $this->employee->query()
+            ->where('id', '!=', auth()->id())
             ->filter(request())
             ->paginate($perPage)
             ->withQueryString();
@@ -25,7 +26,7 @@ class RoleRepository implements BaseRepositoryInterface
 
     public function create(array $data)
     {
-        return $this->role->create($data);
+        return $this->employee->create($data);
     }
 
     public function update(Model $model, array $data)
