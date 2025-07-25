@@ -8,11 +8,15 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    Route::resources([
-        'employees' => EmployeeController::class,
-    ]);
+    // role
     Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
-    Route::post('roles/create', [RoleController::class, 'create'])->name('roles.create');
-    Route::post('roles/update', [RoleController::class, 'update'])->name('roles.update');
-    Route::delete('roles/destroy/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
+    Route::post('role/create', [RoleController::class, 'create'])->name('roles.create');
+    Route::post('role/update', [RoleController::class, 'update'])->name('roles.update');
+    Route::delete('role/destroy/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+    // employee
+    Route::get('employees', [EmployeeController::class, 'index'])->name('employees.index');
+    Route::post('employee/create', [EmployeeController::class, 'create'])->name('employees.create');
+    Route::post('employee/update', [EmployeeController::class, 'update'])->name('employees.update');
+    Route::delete('employee/destroy/{employee}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
 });
