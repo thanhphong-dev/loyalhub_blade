@@ -46,4 +46,17 @@ class EmployeeRepository implements BaseRepositoryInterface
     {
         return $model->delete();
     }
+
+    public function updateProfile(Model $model, array $data)
+    {
+        $model->fill($data);
+
+        if ($model->isDirty()) {
+            $model->save();
+
+            return $model;
+        }
+
+        return false;
+    }
 }
