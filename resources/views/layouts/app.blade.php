@@ -720,11 +720,13 @@
                             data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="me-xl-2 me-0">
-                                    <img src="#" alt="img"
+                                    <img src="{{ Auth::user()->avatar_url
+                                        ? asset('storage/'. Auth::user()->avatar_url)
+                                        : asset('images/employee/avatar.png') }}" alt="img"
                                         class="avatar avatar-sm avatar-rounded">
                                 </div>
                                 <div class="d-xl-block d-none lh-1">
-                                    <span class="fw-medium lh-1"> {{ Auth::user()->name }}</span>
+                                    <span class="fw-medium lh-1"> {{ Auth::user()->full_name }}</span>
                                 </div>
                             </div>
                         </a>
@@ -734,29 +736,27 @@
                                 <div class="py-2 px-3 text-center">
                                     <span class="fw-semibold">{{ Auth::user()->name }}</span>
                                     <span class="d-block fs-12 text-muted">
-                                        Chưa có chức vụ
+                                        {{ Auth::user()->role ? Auth::user()->role->name : __("view.system.role_null") }}
                                 </div>
                             </li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="profile.html"><i
-                                        class="ti ti-user text-primary me-2 fs-16"></i>Profile</a>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('employees.detail', Auth::user()) }}">
+                                    <i class="ti ti-user text-primary me-2 fs-16"></i>
+                                    {{ __("view.employee.profile") }}
+                                </a>
                             </li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="mail.html"> <i
-                                        class="ti ti-mail text-secondary me-2 fs-16"></i>Inbox</a>
-                            </li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="to-do-list.html"><i
-                                        class="ti ti-checklist text-success me-2 fs-16"></i>Task
-                                    Manager</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="mail-settings.html"><i
-                                        class="ti ti-settings text-info me-2 fs-16"></i>Settings</a>
-                            </li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="chat.html"><i
-                                        class="ti ti-headset text-warning me-2 fs-16"></i>Support</a>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="to-do-list.html">
+                                    <i class="ti ti-checklist text-success me-2 fs-16"></i>
+                                    {{ __("view.employee.work_schedule") }}
+                                </a>
                             </li>
                             <li class="py-2 px-3">
-                                <a class="btn btn-primary btn-sm w-100" href="{{ route('logout') }}"
+                                <a class="btn btn-purple btn-sm w-100" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    document.getElementById('logout-form').submit();">
+                                    {{ __('view.system.logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     class="d-none">

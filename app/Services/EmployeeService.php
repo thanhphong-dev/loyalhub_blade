@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\EmployeeRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeService
 {
@@ -40,5 +41,16 @@ class EmployeeService
     public function deleteEmployee(Model $model)
     {
         return $this->employeeRepository->destroy($model);
+    }
+
+    public function updateProfileEmployee(Model $model, array $data)
+    {
+        if (empty($data['password'])) {
+            unset($data['password']);
+        } else {
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        return $this->employeeRepository->updateProfile($model, $data);
     }
 }
