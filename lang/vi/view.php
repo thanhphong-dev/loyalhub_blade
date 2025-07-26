@@ -18,6 +18,9 @@ return [
         'informartion'          => 'Thông tin',
         'password'              => 'Mật khẩu',
         'search'                => 'tìm kiếm nhân sự...',
+        'profile'               => 'Hồ sơ',
+        'work_schedule'         => 'Lịch làm việc',
+        'account'               => 'Tài khoản',
     ],
     'role' => [
         'list'        => 'Danh sách',
@@ -73,6 +76,10 @@ return [
         'menu' => [
             'list' => 'Danh sách',
         ],
+    ],
+    'system' => [
+        'logout'    => 'Đăng xuất',
+        'role_null' => 'Chưa có chức vụ',
     ],
 
 ];

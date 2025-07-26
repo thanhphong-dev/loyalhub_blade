@@ -96,6 +96,7 @@ typography
   --primary08: rgba(var(--primary-rgb), 0.8);
   --primary09: rgba(var(--primary-rgb), 0.9);
   --primary005: rgba(var(--primary-rgb), 0.05);
+  --purple005: rgba(var(--purple-rgb), 0.05);
   --default-font-family: "Open Sans", sans-serif;
   --default-font-weight: 500;
   --default-text-color: #222f36;
@@ -4647,7 +4648,6 @@ typography
   border-block-start: 1px solid var(--default-border);
   padding: 1rem;
   font-size: 0.85rem;
-  padding-right: 0px;
 }
 .card.custom-card .card-body {
   padding: 1rem;
@@ -4934,12 +4934,12 @@ typography
   font-weight: 500;
 }
 .dropdown-item:not(.active):hover, .dropdown-item:not(.active):focus, .dropdown-item:not(.active):active {
-  color: var(--primary-color);
-  background-color: var(--primary005);
+  color: var(--purple-color);
+  background-color: var(--purple005);
 }
 .dropdown-item.active {
-  background-color: var(--primary005) !important;
-  color: var(--primary-color) !important;
+  background-color: var(--purple005) !important;
+  color: var(--purple-color) !important;
 }
 .dropdown-toggle::after {
   display: inline-block;
@@ -23510,7 +23510,7 @@ ul.files-main-nav li div.filemanager-upgrade-storage img {
   background-color: rgb(var(--light-rgb)) !important;
 }
 .mailsettings-nav li .nav-link.active {
-  background-color: var(--primary-color) !important;
+  background-color: var(--purple-color) !important;
   color: #fff !important;
 }
 .mailsettings-nav li .nav-link.active svg {
@@ -23861,14 +23861,14 @@ ul.files-main-nav li div.filemanager-upgrade-storage img {
   height: 0.95rem;
 }
 .avatar.avatar-xxl {
-  width: 5rem;
-  height: 5rem;
+  width: 12.5rem;
+  height: 12.5rem;
   line-height: 5rem;
   font-size: 1.5rem;
 }
 .avatar.avatar-xxl .avatar-badge {
-  inset-block-start: -4%;
-  inset-inline-end: 0rem;
+  inset-block-start: 1%;
+  inset-inline-end: 2rem;
 }
 .avatar.avatar-xxl.online:before, .avatar.avatar-xxl.offline:before {
   width: 1.05rem;

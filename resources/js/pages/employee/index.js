@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import { submitAjaxForm } from "../../helpers/ajax-helper.js";
 
 $(document).ready(function () {
@@ -21,7 +22,12 @@ $(document).ready(function () {
         $("#edit-address").val(employee.address);
         $("#edit-email").val(employee.email);
         $("#edit-role_id").val(employee.role_id);
-        $("#edit-avatar_url").attr("src", employee.avatar_url ? `/storage/${employee.avatar_url}` : "/images/employee/avatar.png");
+        $("#edit-avatar_url").attr(
+            "src",
+            employee.avatar_url
+                ? `/storage/${employee.avatar_url}`
+                : "/images/employee/avatar.png"
+        );
 
         $("#update-employee").modal("show");
     });
@@ -32,6 +38,40 @@ $(document).ready(function () {
             formSelector: "#update-employee-form",
             modalSelector: "#update-employee",
             reload: true,
+        });
+    });
+
+    $("#profile-employee-form").on("submit", function (e) {
+        e.preventDefault();
+
+        let form = $(this)[0];
+        let formData = new FormData(form);
+
+        $.ajax({
+            url: $(this).attr("action"),
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                notyf.success(response.message);
+                setTimeout(() => location.reload(), 1000);
+            },
+            error: function (xhr) {
+                $(".text-danger").text("");
+
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    $.each(errors, function (key, messages) {
+                        $(".error-" + key).text(messages[0]);
+                    });
+                } else {
+                    notyf.error(getMessError);
+                }
+            },
         });
     });
 
