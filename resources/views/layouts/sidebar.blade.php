@@ -68,6 +68,11 @@
                             {{ __("view.sidebar.module.role") }}
                         </a>
                     </li>
+                    <li class="slide">
+                        <a href={{ route('permissions.index') }} class="side-menu__item">
+                            {{ __("view.sidebar.module.permission") }}
+                        </a>
+                    </li>
                 </ul>
             </li>
 

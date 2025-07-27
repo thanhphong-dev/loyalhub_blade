@@ -12,10 +12,19 @@ $(document).ready(function () {
 
     $(".btn-edit-role").on("click", function () {
         const role = $(this).data("role");
+        const permissions = $(this).data("permissions");
 
         $("#edit-id").val(role.id);
         $("#edit-name").val(role.name);
         $("#edit-description").val(role.description);
+
+        $(".edit-permission").prop("checked", false);
+
+        if(Array.isArray(permissions)){
+            permissions.forEach(function(id){
+                $("#edit-permission-" + id).prop("checked", true);
+            });
+        }
 
         $("#update-role-form").modal("show");
     });
@@ -42,7 +51,7 @@ $(document).ready(function () {
         }).then((willDelete) => {
             if (willDelete.value) {
                 $.ajax({
-                    url: `roles/destroy/${id}`,
+                    url: `role/destroy/${id}`,
                     type: "DELETE",
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(

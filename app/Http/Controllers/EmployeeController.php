@@ -31,8 +31,11 @@ class EmployeeController extends Controller
     public function create(CreateEmployeeRequest $request)
     {
         try {
-            $data = $request->validated();
-            $this->employeeService->createEmployee($data);
+            $data    = $request->validated();
+            $roleIds = $request->input('role_id');
+
+            $employee = $this->employeeService->createEmployee($data);
+            $this->employeeService->assignRoles($employee, [$roleIds]);
 
             return $this->success($data, __('view.notyf.create'));
         } catch (Exception $e) {
@@ -43,18 +46,17 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request)
     {
         try {
-            $data = $request->validated();
-            // dd($data);
+            $data       = $request->validated();
             $employeeId = $request->input('id');
+            $roleIds    = $request->input('role_id');
 
             $employee = User::find($employeeId);
-            // dd($employee);
 
             if ($request->hasFile('avatar_url') && $request->file('avatar_url')->isValid()) {
                 $data['avatar_url'] = handleImageUpload($data['avatar_url'], $employee->avatar_url, 'employee');
             }
 
-            $this->employeeService->updateEmployee($employee, $data);
+            $this->employeeService->updateEmployee($employee, $data, [$roleIds]);
 
             return $this->success($data, __('view.notyf.update'));
         } catch (Exception $e) {

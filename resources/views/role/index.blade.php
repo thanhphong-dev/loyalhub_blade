@@ -9,8 +9,8 @@
                         <ol class="breadcrumb breadcrumb-style2 mb-0">
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0);">
-                                    <i class="ri-id-card-line me-1 fs-15"></i>
-                                    {{ __('view.role.model') }}
+                                    <i class="ti ti-settings me-1 fs-15"></i>
+                                    {{ __('view.system.setting') }}
                                 </a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">{{ __('view.role.list') }}</li>
@@ -62,7 +62,7 @@
                                             </div>
                                             <form id="create-role-form" action="{{ route('roles.create') }}" method="post">
                                                 @csrf
-                                                <div class="modal-body px-4">
+                                                <div class="modal-body px-4" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                                                     <div class="row gy-2">
                                                         <div class="col-12">
                                                             <label for="name" class="form-label">
@@ -82,6 +82,45 @@
                                                             <small class="text-danger error-description"></small>
                                                         </div>
 
+                                                        <div class="col-xl-12">
+                                                            <strong class="d-block">Vai trò này có quyền gì?</strong>
+                                                            <small class="form-text text-muted">
+                                                                Check vào module hoặc các hành động bên dưới để chọn quyền.
+                                                            </small>
+                                                        </div>
+
+                                                        <div class="col-xl-12">
+                                                            @if (count($permissions) > 0)
+                                                                @foreach ($permissions as $moduleName => $modulePermissions)
+                                                                    <div class="card mb-2 border">
+                                                                        <div class="card-header">
+                                                                            <input type="checkbox" class="check-all" data-module="{{ $moduleName }}"
+                                                                                id="{{ $moduleName }}">
+                                                                            <label for="{{ $moduleName }}">
+                                                                                <strong>Module
+                                                                                    {{ ucfirst($moduleName) }}</strong>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="card-body table-checkall">
+                                                                            <div class="row p-0 m-0">
+                                                                                @foreach ($modulePermissions as $permission)
+                                                                                    <div class="col-md-4">
+                                                                                        <input type="checkbox"
+                                                                                            name="permission_id[]"
+                                                                                            value="{{ $permission->id }}"
+                                                                                            data-module="{{ $moduleName }}"
+                                                                                            id="{{ $permission->slug }}"
+                                                                                            class="permission">
+                                                                                        <label
+                                                                                            for="{{ $permission->slug }}">{{ $permission->name }}</label>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -127,10 +166,50 @@
                                                                 {{ __('view.role.description') }}
                                                             </label>
                                                             <textarea class="form-control" id="edit-description" name="description"
-                                                                placeholder="{{ __('view.placeholder.description') }}"
+                                                                placeholder=""
                                                                 rows="5">
                                                             </textarea>
                                                             <small class="text-danger error-description"></small>
+                                                        </div>
+
+                                                        <div class="col-xl-12">
+                                                            <strong class="d-block">Vai trò này có quyền gì?</strong>
+                                                            <small class="form-text text-muted">
+                                                                Check vào module hoặc các hành động bên dưới để chọn quyền.
+                                                            </small>
+                                                        </div>
+                                                        <div class="col-xl-12">
+                                                            @if (count($permissions) > 0)
+                                                                @foreach ($permissions as $moduleName => $modulePermissions)
+                                                                    <div class="card my-4 border">
+                                                                        <div class="card-header">
+                                                                            <input type="checkbox" class="check-all" data-module="{{ $moduleName }}"
+                                                                                id="{{ $moduleName }}">
+                                                                            <label for="{{ $moduleName }}">
+                                                                                <strong>Module
+                                                                                    {{ ucfirst($moduleName) }}</strong>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="row p-0 m-0">
+                                                                                @foreach ($modulePermissions as $permission)
+                                                                                <div class="col-md-4 col-12">
+                                                                                    <input type="checkbox"
+                                                                                        name="permission_id[]"
+                                                                                        value="{{ $permission->id }}"
+                                                                                        data-module="{{ $moduleName }}"
+                                                                                        id="edit-permission-{{ $permission->id }}"
+                                                                                        class="edit-permission permission">
+                                                                                    <label for="edit-permission-{{ $permission->id }}">
+                                                                                        {{ $permission->name }}
+                                                                                    </label>
+                                                                                </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
                                                         </div>
 
                                                     </div>
@@ -173,7 +252,8 @@
                                                 <td>
                                                     <button class="btn btn-icon btn-sm btn-purple btn-edit-role"
                                                         type="button" data-toggle="tooltip" data-placement="top"
-                                                        data-role="{{ $role }}" title="{{ __('view.button.update') }}">
+                                                        data-role="{{ $role }}" title="{{ __('view.button.update') }}"
+                                                        data-permissions="{{ json_encode($role->permissions->pluck('id')->toArray()) }}">
                                                         <i class="ri-edit-line"></i>
                                                     </button>
 

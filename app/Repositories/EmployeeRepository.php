@@ -59,4 +59,9 @@ class EmployeeRepository implements BaseRepositoryInterface
 
         return false;
     }
+
+    public function syncRoles(User $employee, array $roleIds)
+    {
+        $employee->roles()->sync($roleIds);
+    }
 }
