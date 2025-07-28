@@ -736,7 +736,7 @@
                                 <div class="py-2 px-3 text-center">
                                     <span class="fw-semibold">{{ Auth::user()->name }}</span>
                                     <span class="d-block fs-12 text-muted">
-                                        {{ Auth::user()->role ? Auth::user()->role->name : __("view.system.role_null") }}
+                                        {{ Auth::user()->roles ? Auth::user()->roles->pluck('name')->implode(', ') : __("view.system.role_null") }}
                                 </div>
                             </li>
                             <li>

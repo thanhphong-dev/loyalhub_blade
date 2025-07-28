@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
     // permission
     Route::get('permissions', [PermissionController::class, 'index'])->name('permissions.index')->can('permissions.index');
-    Route::post('permission/create', [PermissionController::class, 'create'])->name('permissions.create')->can('permissions.index');
-    Route::post('permission/update', [PermissionController::class, 'update'])->name('permissions.update')->can('permissions.index');
-    Route::delete('permission/destroy/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy')->can('permissions.index');
+    Route::post('permission/create', [PermissionController::class, 'create'])->name('permissions.create')->can('permissions.create');
+    Route::post('permission/update', [PermissionController::class, 'update'])->name('permissions.update')->can('permissions.update');
+    Route::delete('permission/destroy/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy')->can('permissions.destroy');
 });

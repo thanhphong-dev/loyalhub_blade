@@ -31,7 +31,6 @@ class UpdateEmployeeRequest extends FormRequest
             'phone_number'          => ['nullable', 'string'],
             'address'               => ['nullable', 'string'],
             'role_id'               => ['required', 'exists:roles,id'],
-            'current_password'      => ['required_with:password', 'current_password'],
             'password'              => ['nullable', Password::min(8)->uncompromised(), 'confirmed'],
             'password_confirmation' => ['same:password'],
         ];
