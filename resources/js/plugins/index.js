@@ -18,4 +18,4 @@ import '../../shared/custom-switcher.min.js';
 import '../../shared/swiper/swiper-bundle.min.js';
 import '../../shared/particles/particles.js';
 
-
+import './error.js';

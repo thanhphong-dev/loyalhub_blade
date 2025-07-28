@@ -92,5 +92,12 @@ return [
         'slug'        => 'Thao tác',
         'description' => 'Nội dung',
     ],
+    'errors' => [
+        '403' => [
+            'notification' => '403',
+            'title'        => 'Xin chào nhân sự',
+            'message'      => 'Chức vụ của bạn không có quyền truy cập chức năng này !',
+        ],
+    ],
 
 ];
