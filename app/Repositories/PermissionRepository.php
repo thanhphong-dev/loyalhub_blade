@@ -3,29 +3,28 @@
 namespace App\Repositories;
 
 use App\Interfaces\BaseRepositoryInterface;
-use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Database\Eloquent\Model;
 
-class RoleRepository implements BaseRepositoryInterface
+class PermissionRepository implements BaseRepositoryInterface
 {
-    protected $role;
+    protected $permission;
 
-    public function __construct(Role $role)
+    public function __construct(Permission $permission)
     {
-        $this->role = $role;
+        $this->permission = $permission;
     }
 
     public function get(int $perPage)
     {
-        return $this->role->query()
-            ->filter(request())
-            ->paginate($perPage)
-            ->withQueryString();
+        return $this->permission->all()->groupBy(function ($permissions) {
+            return explode('.', $permissions->slug)[0];
+        });
     }
 
     public function create(array $data)
     {
-        return $this->role->create($data);
+        return $this->permission->create($data);
     }
 
     public function update(Model $model, array $data)
@@ -44,10 +43,5 @@ class RoleRepository implements BaseRepositoryInterface
     public function destroy(Model $model)
     {
         return $model->delete();
-    }
-
-    public function syncPermissions(Role $role, array $permissionIds)
-    {
-        $role->permissions()->sync($permissionIds);
     }
 }

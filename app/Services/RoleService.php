@@ -27,15 +27,22 @@ class RoleService
         return $this->roleRepository->create($data);
     }
 
-    public function updateRole(int $roleId, array $data)
+    public function updateRole(int $roleId, array $data, array $permissionIds)
     {
         $role = Role::find($roleId);
 
-        return $this->roleRepository->update($role, $data);
+        $this->roleRepository->update($role, $data);
+
+        $this->roleRepository->syncPermissions($role, $permissionIds);
     }
 
     public function deleteRole(Model $model)
     {
         return $this->roleRepository->destroy($model);
+    }
+
+    public function assignPermissions(Role $role, array $permissionIds)
+    {
+        $this->roleRepository->syncPermissions($role, $permissionIds);
     }
 }

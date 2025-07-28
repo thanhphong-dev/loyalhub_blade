@@ -5,7 +5,6 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -67,8 +66,19 @@ class User extends Authenticatable
         return $this->frist_name.' '.$this->last_name;
     }
 
-    public function role(): BelongsTo
+    public function roles()
     {
-        return $this->belongsTo(Role::class, 'role_id');
+        return $this->belongsToMany(Role::class, 'role_users');
+    }
+
+    public function hasPermission($permission)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->permissions->where('slug', $permission)->count() > 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -32,6 +32,7 @@ class CreateEmployeeRequest extends FormRequest
                 Rule::unique('users', 'email')->whereNull('deleted_at'), ],
             'phone_number' => ['nullable'],
             'role_id'      => ['required', 'exists:roles,id'],
+            'address'      => ['required', 'string'],
         ];
     }
 

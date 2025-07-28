@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Repositories\EmployeeRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,7 @@ class EmployeeService
         return $this->employeeRepository->create($data);
     }
 
-    public function updateEmployee(Model $model, array $data)
+    public function updateEmployee(Model $model, array $data, array $roleIds)
     {
         if (empty($data['password'])) {
             unset($data['password']);
@@ -35,7 +36,8 @@ class EmployeeService
             $data['password'] = Hash::make($data['password']);
         }
 
-        return $this->employeeRepository->update($model, $data);
+        $this->employeeRepository->update($model, $data);
+        $this->employeeRepository->syncRoles($model, $roleIds);
     }
 
     public function deleteEmployee(Model $model)
@@ -52,5 +54,10 @@ class EmployeeService
         }
 
         return $this->employeeRepository->updateProfile($model, $data);
+    }
+
+    public function assignRoles(User $employee, array $roleIds)
+    {
+        $this->employeeRepository->syncRoles($employee, $roleIds);
     }
 }

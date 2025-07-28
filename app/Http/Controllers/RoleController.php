@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RoleRequest;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Services\RoleService;
 use Exception;
@@ -25,9 +26,13 @@ class RoleController extends Controller
      */
     public function index(): View
     {
-        $roles = $this->roleService->getAllRole();
+        $roles       = $this->roleService->getAllRole();
+        $permissions = Permission::all()
+            ->groupBy(function ($permissions) {
+                return explode('.', $permissions->slug)[0];
+            });
 
-        return view('role.index', compact('roles'));
+        return view('role.index', compact('roles', 'permissions'));
     }
 
     /**
@@ -39,8 +44,11 @@ class RoleController extends Controller
     public function create(RoleRequest $roleRequest): JsonResponse
     {
         try {
-            $data = $roleRequest->validated();
-            $this->roleService->createRole($data);
+            $data          = $roleRequest->validated();
+            $permissionIds = $roleRequest->input('permission_id', []);
+
+            $role = $this->roleService->createRole($data);
+            $this->roleService->assignPermissions($role, $permissionIds);
 
             return $this->success($data, __('view.notyf.create'));
         } catch (Exception $e) {
@@ -57,10 +65,10 @@ class RoleController extends Controller
     public function update(RoleRequest $roleRequest): JsonResponse
     {
         try {
-            $roleId = $roleRequest->input('id');
-            $data   = $roleRequest->validated();
-
-            $this->roleService->updateRole($roleId, $data);
+            $roleId        = $roleRequest->input('id');
+            $data          = $roleRequest->validated();
+            $permissionIds = $roleRequest->input('permission_id', []);
+            $this->roleService->updateRole($roleId, $data, $permissionIds);
 
             return $this->success($data, __('view.notyf.update'));
         } catch (Exception $e) {

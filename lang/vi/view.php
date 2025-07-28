@@ -52,8 +52,9 @@ return [
         'null' => 'Không có dữ liệu hiển thị !',
     ],
     'placeholder' => [
-        'name'        => 'nhập tên...',
-        'description' => 'nhập mô tả...',
+        'name'            => 'nhập tên...',
+        'description'     => 'nhập mô tả...',
+        'slug_permission' => 'ví dụ: post.add...',
     ],
     'vesion' => [
         'name'   => 'Loyal Hub version @2025',
@@ -72,14 +73,31 @@ return [
             'system'         => 'Hệ thống',
             'employee'       => 'Nhân sự',
             'manager_system' => 'Quản trị hệ thống',
+            'permission'     => 'Phân quyền',
         ],
         'menu' => [
             'list' => 'Danh sách',
         ],
     ],
     'system' => [
-        'logout'    => 'Đăng xuất',
-        'role_null' => 'Chưa có chức vụ',
+        'logout'     => 'Đăng xuất',
+        'role_null'  => 'Chưa có chức vụ',
+        'role'       => 'Vai trò',
+        'setting'    => 'Cài đặt',
+        'permission' => 'Phân quyền',
+    ],
+    'permission' => [
+        'model'       => 'Quyền',
+        'name'        => 'Tên',
+        'slug'        => 'Thao tác',
+        'description' => 'Nội dung',
+    ],
+    'errors' => [
+        '403' => [
+            'notification' => '403',
+            'title'        => 'Xin chào nhân sự',
+            'message'      => 'Chức vụ của bạn không có quyền truy cập chức năng này !',
+        ],
     ],
 
 ];
