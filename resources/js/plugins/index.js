@@ -1,7 +1,8 @@
 
 import 'jquery-ui';
 
-import '../helpers/ajax-helper.js'
+import '../helpers/ajax-helper.js';
+import '../helpers/app-helper.js';
 
 import '../../shared/layout.js';
 import '../../shared/@popperjs/core/umd/popper.min.js';
@@ -17,3 +18,4 @@ import '../../shared/custom-switcher.min.js';
 import '../../shared/swiper/swiper-bundle.min.js';
 import '../../shared/particles/particles.js';
 
+import './error.js';

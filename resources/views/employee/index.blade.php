@@ -357,7 +357,7 @@
                                                 <td>{{ $employee->address }}</td>
                                                 <td>
                                                     <span class="badge bg-purple text-white">
-                                                        {{ $employee->role->name }}
+                                                        {{ $employee->roles->pluck('name')->implode(', ') }}
                                                     </span>
                                                 </td>
                                                 <td class="text-center">
