@@ -1,0 +1,40 @@
+name: CI - Pull Request
+
+on:
+  pull_request:
+    branches:
+      - master
+      - staging
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  laravel-ci:
+    name: Laravel CI (Pint + Build Test)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, bcmath, mysql
+          coverage: none
+
+      - name: 📦 Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: 🧪 Copy .env
+        run: cp .env.example .env
+
+      - name: 🔐 Generate app key
+        run: php artisan key:generate
+
+      - name: 🧬 Run Laravel Pint (Test Mode)
+        run: ./vendor/bin/pint --test
+

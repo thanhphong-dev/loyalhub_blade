@@ -6,6 +6,8 @@ use App\Http\Requests\PermissionRequest;
 use App\Models\Permission;
 use App\Services\PermissionService;
 use Exception;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 
 class PermissionController extends Controller
 {
@@ -16,14 +18,25 @@ class PermissionController extends Controller
         $this->permissionService = $permissionService;
     }
 
-    public function index()
+    /**
+     * Return view index
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index(): View
     {
         $permissions = $this->permissionService->getPermissions();
 
         return view('permission.index', compact('permissions'));
     }
 
-    public function create(PermissionRequest $request)
+    /**
+     * Create permission
+     *
+     * @param  \App\Http\Requests\PermissionRequest  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create(PermissionRequest $request): JsonResponse
     {
         try {
             $data = $request->validated();
@@ -35,7 +48,13 @@ class PermissionController extends Controller
         }
     }
 
-    public function update(PermissionRequest $request)
+    /**
+     * Update permission
+     *
+     * @param  \App\Http\Requests\PermissionRequest  $request
+     * @return JsonResponse
+     */
+    public function update(PermissionRequest $request): JsonResponse
     {
         try {
             $data         = $request->validated();
@@ -49,7 +68,13 @@ class PermissionController extends Controller
         }
     }
 
-    public function destroy(Permission $permission)
+    /**
+     * Destroy permission
+     *
+     * @param  \App\Models\Permission  $permission
+     * @return JsonResponse
+     */
+    public function destroy(Permission $permission): JsonResponse
     {
         try {
             $this->permissionService->deletePermission($permission);

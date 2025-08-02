@@ -259,9 +259,8 @@
 
                                                     <a href="javascript:void(0);"
                                                         data-url="{{ route('roles.destroy', $role) }}"
-                                                        data-id="{{ $role->id }}"
                                                         title="{{ __('view.button.delete') }}"
-\                                                       class="btn btn-icon btn-sm btn-danger delete-role">
+                                                        class="btn btn-icon btn-sm btn-danger delete-role">
                                                         <i class="ri-delete-bin-line"></i>
                                                     </a>
                                                 </td>
