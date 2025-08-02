@@ -89,7 +89,8 @@ $(document).ready(function () {
     });
 
     $(".delete-employee").on("click", function () {
-        const id = $(this).data("id");
+        const url = $(this).data("url");
+
         Swal.fire({
             title: getNotification,
             text: getConfirm,
@@ -100,7 +101,7 @@ $(document).ready(function () {
         }).then((willDelete) => {
             if (willDelete.value) {
                 $.ajax({
-                    url: `employee/destroy/${id}`,
+                    url: url,
                     type: "DELETE",
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(

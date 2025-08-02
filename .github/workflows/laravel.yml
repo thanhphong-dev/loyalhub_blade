@@ -1,0 +1,29 @@
+name: CI - Pull Request
+on:
+  pull_request:
+    branches:
+      - master
+      - staging
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  laravel-pint:
+    name: Laravel Pint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run Laravel Pint (Test Mode)
+        run: ./vendor/bin/pint --test
