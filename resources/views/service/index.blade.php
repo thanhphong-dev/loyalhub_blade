@@ -242,7 +242,7 @@
                                                     {{ $service->price ? number_format($service->price, 0, ',', '.') . ' ₫' : 'null' }}
                                                 </td>
                                                 <td>
-                                                    <span class="badge bg-success text-white">
+                                                    <span class="badge {{ $service->status->colorClass() }} text-white">
                                                         {{ $service->status->lable() }}
                                                     </span>
                                                 </td>
