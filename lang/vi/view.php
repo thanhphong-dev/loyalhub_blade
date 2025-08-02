@@ -1,6 +1,17 @@
 <?php
 
 return [
+    'service' => [
+        'model'           => 'Dịch vụ',
+        'category'        => 'Danh mục',
+        'list'            => 'Danh sách',
+        'name'            => 'Tên',
+        'price'           => 'Giá',
+        'description'     => 'Mô tả',
+        'status'          => 'Trạng thái',
+        'search_category' => 'tìm kiếm danh mục...',
+        'search_service'  => 'tìm kiếm dịch vụ...',
+    ],
     'employee' => [
         'model'                 => 'Nhân sự',
         'list'                  => 'Danh sách',
@@ -55,6 +66,7 @@ return [
         'name'            => 'nhập tên...',
         'description'     => 'nhập mô tả...',
         'slug_permission' => 'ví dụ: post.add...',
+        'price'           => 'nhập giá...',
     ],
     'vesion' => [
         'name'   => 'Loyal Hub version @2025',
@@ -74,6 +86,8 @@ return [
             'employee'       => 'Nhân sự',
             'manager_system' => 'Quản trị hệ thống',
             'permission'     => 'Phân quyền',
+            'operation'      => 'Vận hành',
+            'service'        => 'Dịch vụ',
         ],
         'menu' => [
             'list' => 'Danh sách',

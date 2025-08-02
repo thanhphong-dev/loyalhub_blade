@@ -1,45 +1,37 @@
-import Swal from "sweetalert2";
 import { submitAjaxForm } from "../../helpers/ajax-helper.js";
-$(document).ready(function () {
-    $("#create-role-form").on("submit", function (e) {
+$(document).ready(function(){
+    $("#create-service-form").on("submit", function (e) {
         e.preventDefault();
         submitAjaxForm({
-            formSelector: "#create-role-form",
-            modalSelector: "#create-role",
+            formSelector: "#create-service-form",
+            modalSelector: "#create-service",
             reload: true,
         });
     });
 
-    $(".btn-edit-role").on("click", function () {
-        const role = $(this).data("role");
-        const permissions = $(this).data("permissions");
+    $(".btn-edit-service").on("click", function(){
+        const service = $(this).data("service");
 
-        $("#edit-id").val(role.id);
-        $("#edit-name").val(role.name);
-        $("#edit-description").val(role.description);
+        $("#edit-id").val(service.id);
+        $("#edit-name").val(service.name);
+        $("#edit-price").val(parseInt(service.price));
+        $("#edit-status").val(service.status);
+        $("#edit-category_id").val(service.category_id);
+        $("#edit-description").val(service.description);
 
-        $(".edit-permission").prop("checked", false);
-
-        if(Array.isArray(permissions)){
-            permissions.forEach(function(id){
-                $("#edit-permission-" + id).prop("checked", true);
-            });
-        }
-
-        $("#update-role-form").modal("show");
+        $("#update-service").modal("show");
     });
 
-    $("#update-role").on("submit", function (e) {
+    $("#update-service-form").on("submit", function(e){
         e.preventDefault();
-
         submitAjaxForm({
-            formSelector: "#update-role",
-            modalSelector: "#update-role-form",
-            reload: true,
+            formSelector: "#update-service-form",
+            modalSelector: "#update-service",
+            reload:true,
         });
     });
 
-    $(".delete-role").on("click", function () {
+    $(".delete-service").on("click", function () {
         const url = $(this).data("url");
 
         Swal.fire({
@@ -72,4 +64,4 @@ $(document).ready(function () {
             }
         });
     });
-});
+})

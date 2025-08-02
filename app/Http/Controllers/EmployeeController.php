@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Services\EmployeeService;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 
 class EmployeeController extends Controller
@@ -20,7 +21,12 @@ class EmployeeController extends Controller
         $this->employeeService = $employeeService;
     }
 
-    public function index()
+    /**
+     * Return view index
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index(): View
     {
         $roles     = Role::all();
         $employees = $this->employeeService->getAllEmployee();
@@ -28,7 +34,13 @@ class EmployeeController extends Controller
         return view('employee.index', compact('roles', 'employees'));
     }
 
-    public function create(CreateEmployeeRequest $request)
+    /**
+     * Create employee
+     *
+     * @param  \App\Http\Requests\CreateEmployeeRequest  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create(CreateEmployeeRequest $request): JsonResponse
     {
         try {
             $data    = $request->validated();
@@ -43,7 +55,13 @@ class EmployeeController extends Controller
         }
     }
 
-    public function update(UpdateEmployeeRequest $request)
+    /**
+     * Update employee
+     *
+     * @param  \App\Http\Requests\UpdateEmployeeRequest  $request
+     * @return JsonResponse
+     */
+    public function update(UpdateEmployeeRequest $request): JsonResponse
     {
         try {
             $data       = $request->validated();
@@ -64,7 +82,13 @@ class EmployeeController extends Controller
         }
     }
 
-    public function destroy(User $employee)
+    /**
+     * Destroy employee
+     *
+     * @param  \App\Models\User  $employee
+     * @return JsonResponse
+     */
+    public function destroy(User $employee): JsonResponse
     {
         try {
             $this->employeeService->deleteEmployee($employee);
@@ -75,6 +99,12 @@ class EmployeeController extends Controller
         }
     }
 
+    /**
+     * Return view detail employee
+     *
+     * @param  \App\Models\User  $employee
+     * @return \Illuminate\Contracts\View\View
+     */
     public function detail(User $employee): View
     {
         $roles = Role::get();
@@ -82,7 +112,14 @@ class EmployeeController extends Controller
         return view('employee.detail', compact('employee', 'roles'));
     }
 
-    public function profile(InfomationEmployeeRequest $request, User $employee)
+    /**
+     *Update profile emmployee
+     *
+     * @param  \App\Http\Requests\InfomationEmployeeRequest  $request
+     * @param  \App\Models\User  $employee
+     * @return JsonResponse
+     */
+    public function profile(InfomationEmployeeRequest $request, User $employee): JsonResponse
     {
         try {
             $data = $request->validated();

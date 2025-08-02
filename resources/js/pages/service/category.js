@@ -1,45 +1,34 @@
-import Swal from "sweetalert2";
 import { submitAjaxForm } from "../../helpers/ajax-helper.js";
 $(document).ready(function () {
-    $("#create-role-form").on("submit", function (e) {
+    $("#create-service-category-form").on("submit", function (e) {
         e.preventDefault();
         submitAjaxForm({
-            formSelector: "#create-role-form",
-            modalSelector: "#create-role",
+            formSelector: "#create-service-category-form",
+            modalSelector: "#create-service-category",
             reload: true,
         });
     });
 
-    $(".btn-edit-role").on("click", function () {
-        const role = $(this).data("role");
-        const permissions = $(this).data("permissions");
+    $(".btn-edit-service-category").on("click", function () {
+        const serviceCategory = $(this).data("service_category");
 
-        $("#edit-id").val(role.id);
-        $("#edit-name").val(role.name);
-        $("#edit-description").val(role.description);
+        $("#edit-id").val(serviceCategory.id);
+        $("#edit-name").val(serviceCategory.name);
+        $("#edit-description").val(serviceCategory.description);
 
-        $(".edit-permission").prop("checked", false);
-
-        if(Array.isArray(permissions)){
-            permissions.forEach(function(id){
-                $("#edit-permission-" + id).prop("checked", true);
-            });
-        }
-
-        $("#update-role-form").modal("show");
+        $("#update-service-category").modal("show");
     });
 
-    $("#update-role").on("submit", function (e) {
+    $("#update-service-category-form").on("submit", function (e) {
         e.preventDefault();
-
         submitAjaxForm({
-            formSelector: "#update-role",
-            modalSelector: "#update-role-form",
+            formSelector: "#update-service-category-form",
+            modalSelector: "#update-service-category",
             reload: true,
         });
     });
 
-    $(".delete-role").on("click", function () {
+    $(".delete-service-category").on("click", function () {
         const url = $(this).data("url");
 
         Swal.fire({

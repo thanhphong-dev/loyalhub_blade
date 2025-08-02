@@ -187,9 +187,8 @@
                                                                 </button>
                                                                 <a href="javascript:void(0);"
                                                                     data-url="{{ route('permissions.destroy', $permission) }}"
-                                                                    data-id="{{ $permission->id }}"
                                                                     title="{{ __('view.button.delete') }}"
-            \                                                       class="btn btn-icon btn-sm btn-danger delete-permission">
+                                                                    class="btn btn-icon btn-sm btn-danger delete-permission">
                                                                     <i class="ri-delete-bin-line"></i>
                                                                 </a>
                                                             </div>

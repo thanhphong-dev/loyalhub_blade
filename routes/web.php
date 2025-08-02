@@ -3,6 +3,8 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ServiceCategoryController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +30,16 @@ Route::middleware('auth')->group(function () {
     Route::post('permission/create', [PermissionController::class, 'create'])->name('permissions.create')->can('permissions.create');
     Route::post('permission/update', [PermissionController::class, 'update'])->name('permissions.update')->can('permissions.update');
     Route::delete('permission/destroy/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy')->can('permissions.destroy');
+
+    // service categories
+    Route::get('service/categories', [ServiceCategoryController::class, 'index'])->name('service_categories.index')->can('service_categories.index');
+    Route::post('service/category/create', [ServiceCategoryController::class, 'create'])->name('service_categories.create')->can('service_categories.create');
+    Route::post('service/category/update', [ServiceCategoryController::class, 'update'])->name('service_categories.update')->can('service_categories.update');
+    Route::delete('service/category/destroy/{serviceCategory}', [ServiceCategoryController::class, 'destroy'])->name('service_categories.destroy')->can('service_categories.destroy');
+
+    // service
+    Route::get('services', [ServiceController::class, 'index'])->name('services.index')->can('services.index');
+    Route::post('service/create', [ServiceController::class, 'create'])->name('services.create')->can('services.create');
+    Route::post('service/update', [ServiceController::class, 'update'])->name('services.update')->can('services.update');
+    Route::delete('service/delete/{service}', [ServiceController::class, 'destroy'])->name('services.destroy')->can('services.destroy');
 });
