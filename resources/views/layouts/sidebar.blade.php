@@ -6,6 +6,38 @@
             </svg>
         </div>
         <ul class="main-menu">
+            <li class="slide__category"><span class="category-name">{{ __("view.sidebar.module.operation") }}</span></li>
+            <li class="slide has-sub">
+                <a href="javascript:void(0);" class="side-menu__item">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <rect width="256" height="256" fill="none" />
+                        <rect x="48" y="48" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="144" y="48" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="48" y="144" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="144" y="144" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <path d="M6.50488 2H17.5049C17.8196 2 18.116 2.14819 18.3049 2.4L21.0049 6V21C21.0049 21.5523 20.5572 22 20.0049 22H4.00488C3.4526 22 3.00488 21.5523 3.00488 21V6L5.70488 2.4C5.89374 2.14819 6.19013 2 6.50488 2ZM19.0049 8H5.00488V20H19.0049V8ZM18.5049 6L17.0049 4H7.00488L5.50488 6H18.5049ZM9.00488 10V12C9.00488 13.6569 10.348 15 12.0049 15C13.6617 15 15.0049 13.6569 15.0049 12V10H17.0049V12C17.0049 14.7614 14.7663 17 12.0049 17C9.24346 17 7.00488 14.7614 7.00488 12V10H9.00488Z"></path>
+                        </svg>
+                    <span class="side-menu__label">{{ __("view.sidebar.module.service") }}</span>
+                    <i class="ri-arrow-right-s-line side-menu__angle"></i>
+                </a>
+                <ul class="slide-menu child1">
+                    <li class="slide side-menu__label1">
+                        <a href="javascript:void(0)">{{ __("view.sidebar.module.service") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('services.index') }}" class="side-menu__item">{{ __("view.service.list") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('service_categories.index') }}" class="side-menu__item">{{ __("view.service.category") }}</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="slide__category"><span class="category-name">{{ __("view.sidebar.module.system") }}</span></li>
             <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">

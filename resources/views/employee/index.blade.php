@@ -370,7 +370,6 @@
 
                                                     <a href="javascript:void(0);"
                                                         data-url="{{ route('employees.destroy', $employee) }}"
-                                                        data-id="{{ $employee->id }}"
                                                         title="{{ __('view.button.delete') }}"
                                                         class="btn btn-icon btn-sm btn-danger delete-employee">
                                                         <i class="ri-delete-bin-line"></i>
