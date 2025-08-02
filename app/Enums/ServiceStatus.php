@@ -14,4 +14,12 @@ enum ServiceStatus: int
             self::INACTIVE => 'Không hoạt động',
         };
     }
+
+    public function colorClass()
+    {
+        return match ($this) {
+            self::ACTIVE   => 'bg-success',
+            self::INACTIVE => 'bg-danger',
+        };
+    }
 }
