@@ -111,7 +111,7 @@ $(document).ready(function () {
                     success: function () {
                         notyf.success(getMessSuccess);
                         setTimeout(() => {
-                            window.location.href = "employees";
+                            location.reload();;
                         }, 1000);
                     },
                     error: function () {

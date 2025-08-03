@@ -8,3 +8,5 @@
 @import '../../shared/@tarekraafat/autocomplete.js/css/autoComplete.css';
 @import '../../shared/prismjs/themes/prism-coy.min.css';
 @import '../../shared/swiper/swiper-bundle.min.css';
+
+@import './custom.css';

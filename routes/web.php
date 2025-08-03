@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -42,4 +43,10 @@ Route::middleware('auth')->group(function () {
     Route::post('service/create', [ServiceController::class, 'create'])->name('services.create')->can('services.create');
     Route::post('service/update', [ServiceController::class, 'update'])->name('services.update')->can('services.update');
     Route::delete('service/delete/{service}', [ServiceController::class, 'destroy'])->name('services.destroy')->can('services.destroy');
+
+    // customer
+    Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::post('customer/create', [CustomerController::class, 'create'])->name('customers.create');
+    Route::post('customer/update', [CustomerController::class, 'update'])->name('customers.update');
+    Route::delete('customer/destroy/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 });

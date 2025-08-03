@@ -1,6 +1,22 @@
 <?php
 
 return [
+    'customer' => [
+        'model'          => 'Khách hàng',
+        'list'           => 'Danh sách',
+        'full_name'      => 'Họ và tên',
+        'logo'           => 'Ảnh đại diện',
+        'email'          => 'Email',
+        'phone_number'   => 'Số điện thoại',
+        'address'        => 'Địa chỉ',
+        'website'        => 'Website',
+        'service'        => 'Dịch vụ',
+        'source'         => 'Nguồn khách hàng',
+        'status'         => 'Trạng thái',
+        'user_create'    => 'Người tạo',
+        'assigned_staff' => 'Nhân viên được giao',
+        'file'           => 'File',
+    ],
     'service' => [
         'model'           => 'Dịch vụ',
         'category'        => 'Danh mục',
@@ -67,6 +83,11 @@ return [
         'description'     => 'nhập mô tả...',
         'slug_permission' => 'ví dụ: post.add...',
         'price'           => 'nhập giá...',
+        'full_name'       => 'nhập họ và tên...',
+        'phone_number'    => 'nhập số điện thoại...',
+        'email'           => 'nhập email...',
+        'address'         => 'nhập địa chỉ...',
+        'website'         => 'nhập website...',
     ],
     'vesion' => [
         'name'   => 'Loyal Hub version @2025',
@@ -88,6 +109,8 @@ return [
             'permission'     => 'Phân quyền',
             'operation'      => 'Vận hành',
             'service'        => 'Dịch vụ',
+            'crm'            => 'CRM',
+            'customer'       => 'Khách hàng',
         ],
         'menu' => [
             'list' => 'Danh sách',

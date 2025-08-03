@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Enums\CustomerSource;
+use App\Enums\CustomerStatus;
 use App\Enums\ServiceStatus;
+use App\Models\Customer;
 use App\Models\User;
+use App\Observers\CustomerObserver;
 use App\Observers\EmployeeObserver;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -27,8 +31,11 @@ class AppServiceProvider extends ServiceProvider
 
         // observer
         User::observe(EmployeeObserver::class);
+        Customer::observe(CustomerObserver::class);
 
         // view share
         View::share('serviceStatus', ServiceStatus::cases());
+        View::share('customerSource', CustomerSource::cases());
+        View::share('customerStatus', CustomerStatus::cases());
     }
 }
