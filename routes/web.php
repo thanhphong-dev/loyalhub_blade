@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
@@ -49,4 +50,14 @@ Route::middleware('auth')->group(function () {
     Route::post('customer/create', [CustomerController::class, 'create'])->name('customers.create');
     Route::post('customer/update', [CustomerController::class, 'update'])->name('customers.update');
     Route::delete('customer/destroy/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+    Route::get('customer/contact', [CustomerController::class, 'customerContact'])->name('customers.contact');
+    Route::post('customer/calendar', [CustomerController::class, 'createCalendar'])->name('customers.calendar');
+
+    // customer appointment
+    Route::get('customer/appointments', [CustomerAppointmentController::class, 'index'])->name('customer_appointments.index');
+    Route::get('customer-appointment/get-all', [CustomerAppointmentController::class, 'getALL'])->name('customer_appointments.get_all');
+    Route::get('customer-appointment/get-customer/{customerAppointment}', [CustomerAppointmentController::class, 'getCustomerForAppoinment'])->name('customer_appointments.get_customer_for_edit');
+    Route::get('customer-appointment/get-employee/{customerAppointment}', [CustomerAppointmentController::class, 'getEmployeeForAppoinment'])->name('customer_appointments.get_employee_for_edit');
+
+
 });

@@ -48,4 +48,6 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class, 'assigned_staff_id');
     }
+
+
 }

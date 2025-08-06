@@ -29,6 +29,15 @@ class CustomerController extends Controller
         return view('customer.index', compact('employees', 'services', 'customers'));
     }
 
+    public function customerContact()
+    {
+        $employees = User::where('id', '!=', auth()->id())->get();
+        $services  = Service::all();
+        $customers = $this->customerService->getCustomerContact();
+
+        return view('customer.contact', compact('employees', 'services', 'customers'));
+    }
+
     public function create(CreateCustomerRequest $request)
     {
         DB::beginTransaction();
@@ -88,8 +97,8 @@ class CustomerController extends Controller
             }
 
             DB::commit();
-
             return $this->success($customer, __('view.notyf.delete'));
+
         } catch (Exception $e) {
             DB::rollBack();
 

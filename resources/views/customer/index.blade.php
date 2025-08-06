@@ -290,10 +290,12 @@
                                                                 {{ __('view.customer.status') }}
                                                             </label>
                                                             <select name="status" class="form-control" id="edit-status">
-                                                                @foreach ($customerStatus as $item)
-                                                                    <option value="{{ $item->value }}">
-                                                                        {{ $item->lable() }}
-                                                                    </option>
+                                                                @foreach ($customerStatus as $status)
+                                                                    @if (in_array($status, App\Enums\CustomerStatus::groupNew()))
+                                                                        <option value="{{ $status->value }}">
+                                                                            {{ $status->lable() }}
+                                                                        </option>
+                                                                    @endif
                                                                 @endforeach
                                                             </select>
                                                             <small class="text-danger error-status"></small>

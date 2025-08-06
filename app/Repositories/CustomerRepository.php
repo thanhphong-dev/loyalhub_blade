@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\CustomerStatus;
 use App\Interfaces\BaseRepositoryInterface;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,22 @@ class CustomerRepository implements BaseRepositoryInterface
     public function get(int $perPage)
     {
         return $this->customer->query()
+             ->where('status', [
+                CustomerStatus::NEW
+             ])
+            ->filter(request())
+            ->paginate($perPage)
+            ->withQueryString();
+    }
+
+    public function getContact(int $perPage)
+    {
+        return $this->customer->query()
+            ->whereIn('status', [
+                CustomerStatus::CONTACTED,
+                CustomerStatus::INTERESTED,
+                CustomerStatus::BOOKED,
+            ])
             ->filter(request())
             ->paginate($perPage)
             ->withQueryString();

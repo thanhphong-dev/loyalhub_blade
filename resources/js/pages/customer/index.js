@@ -45,6 +45,19 @@ $(document).ready(function () {
         });
     });
 
+    $(".btn-calendar-customer").on("click", function (e) {
+        e.preventDefault();
+
+        const customer = $(this).data("customer");
+
+        $("#calendar-id").val(customer.id);
+        $("#calendar-status").val(customer.status);
+        $("#calendar-user_create").val(customer.user_create);
+        $("#calendar-assigned_staff_id").val(customer.assigned_staff_id);
+
+        $("#calendar-customer").modal("show");
+    });
+
     $(".delete-customer").on("click", function () {
         const url = $(this).data("url");
 

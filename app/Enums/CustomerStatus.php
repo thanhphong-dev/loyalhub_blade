@@ -35,4 +35,28 @@ enum CustomerStatus: int
             default          => 'bg-light',
         };
     }
+
+    public static function groupNew()
+    {
+        return [
+            self::NEW,
+            self::CONTACTED,
+        ];
+    }
+
+    public static function groupContacted()
+    {
+        return [
+            self::CONTACTED,
+            self::INTERESTED,
+            self::BOOKED,
+        ];
+    }
+
+    public static function groupBooked(){
+        return [
+            self::BOOKED,
+        ];
+    }
+
 }

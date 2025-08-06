@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'customer_appointment' => [
+        'temporal_status' => 'Trạng thái thời gian',
+        'title' => 'Tên cuộc hẹn',
+        'start_time' => 'Giờ bắt đầu',
+        'end_time' => 'Giờ kết thúc',
+        'date' => 'Ngày hẹn',
+    ],
     'customer' => [
         'model'          => 'Khách hàng',
         'list'           => 'Danh sách',
@@ -16,6 +23,8 @@ return [
         'user_create'    => 'Người tạo',
         'assigned_staff' => 'Nhân viên được giao',
         'file'           => 'File',
+        'contact'       => 'Liên hệ',
+        'schedule'  => 'Lịch hẹn'
     ],
     'service' => [
         'model'           => 'Dịch vụ',
@@ -64,6 +73,7 @@ return [
         'update'   => 'Chỉnh sửa',
         'function' => 'Chức năng',
         'delete'   => 'Xóa',
+        'calendar' => 'Đặt lịch'
     ],
     'notyf' => [
         'create'       => 'Thêm mới dữ liệu thành công',
@@ -74,6 +84,7 @@ return [
         'confirm'      => 'Bạn có chắc chắn muốn xóa không ?',
         'btn_confirm'  => 'Có',
         'btn_cancel'   => 'Không',
+        'get_data' => 'Lấy dữ liệu thành công',
     ],
     'data' => [
         'null' => 'Không có dữ liệu hiển thị !',
@@ -111,9 +122,12 @@ return [
             'service'        => 'Dịch vụ',
             'crm'            => 'CRM',
             'customer'       => 'Khách hàng',
+            'work' => 'Công việc',
         ],
         'menu' => [
             'list' => 'Danh sách',
+            'calendar' => 'Lịch làm việc',
+            'customer_appointments' => 'Lịch hẹn khách hàng',
         ],
     ],
     'system' => [
@@ -134,6 +148,11 @@ return [
             'notification' => '403',
             'title'        => 'Xin chào nhân sự',
             'message'      => 'Chức vụ của bạn không có quyền truy cập chức năng này !',
+        ],
+    ],
+    'api' => [
+        'get' => [
+            'failure' => 'Lấy dữ liệu thất bại.',
         ],
     ],
 
