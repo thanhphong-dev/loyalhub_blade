@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\User;
 use App\Services\CustomerService;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
@@ -88,6 +89,27 @@ class CustomerController extends Controller
         }
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        try {
+            $customer = Customer::findOrFail($id);
+
+            // Lấy giá trị status từ request, mặc định là null nếu không có
+            $status = $request->input('status');
+
+            if ($status === null) {
+                return $this->error(__('view.notyf.error'), null, 'Status is required');
+            }
+
+            $customer->status = $status;
+            $customer->save();
+
+            return $this->success($customer, __('view.notyf.update'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage(), null, __('view.notyf.error'));
+        }
+    }
+
     public function destroy(Customer $customer)
     {
         DB::beginTransaction();
@@ -97,8 +119,8 @@ class CustomerController extends Controller
             }
 
             DB::commit();
-            return $this->success($customer, __('view.notyf.delete'));
 
+            return $this->success($customer, __('view.notyf.delete'));
         } catch (Exception $e) {
             DB::rollBack();
 

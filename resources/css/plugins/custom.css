@@ -2,3 +2,13 @@
     max-height: calc(100vh - 200px);
     overflow-y: auto;
 }
+.fc-disabled-day {
+    background-color: #e0e0e0 !important;
+    opacity: 0.6;
+    pointer-events: none;
+}
+.fc-daygrid-event {
+    white-space: normal !important; /* cho phép xuống dòng */
+    overflow-wrap: break-word;
+}
+

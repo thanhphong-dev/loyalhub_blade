@@ -35,6 +35,9 @@
                     <li class="slide">
                         <a href="{{ route('customers.contact') }}" class="side-menu__item">{{ __("view.customer.contact") }}</a>
                     </li>
+                    <li class="slide">
+                        <a href="#" class="side-menu__item">{{ __("view.customer.schedule") }}</a>
+                    </li>
                 </ul>
             </li>
             <li class="slide__category"><span class="category-name">{{ __("view.sidebar.module.operation") }}</span></li>

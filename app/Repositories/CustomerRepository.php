@@ -19,9 +19,9 @@ class CustomerRepository implements BaseRepositoryInterface
     public function get(int $perPage)
     {
         return $this->customer->query()
-             ->where('status', [
-                CustomerStatus::NEW
-             ])
+            ->where('status', [
+                CustomerStatus::NEW,
+            ])
             ->filter(request())
             ->paginate($perPage)
             ->withQueryString();

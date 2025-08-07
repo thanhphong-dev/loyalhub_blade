@@ -2,56 +2,108 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerAppointmentRequest;
 use App\Models\Customer;
 use App\Models\CustomerAppointment;
-use App\Models\CustomerCalendar;
 use App\Services\CustomerAppoinmentService;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CustomerAppointmentController extends Controller
 {
     protected $customerAppoinmentService;
+
     public function __construct(CustomerAppoinmentService $customerAppoinmentService)
     {
         $this->customerAppoinmentService = $customerAppoinmentService;
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('work.customer-appointment');
+        $customers = Customer::all();
+
+        return view('work.customer-appointment', compact('customers'));
     }
 
     public function getAll()
     {
-        try{
+        try {
             $customerAppoiments = $this->customerAppoinmentService->getAllCustomerAppoinment();
 
-            return $this->success($customerAppoiments, __("view.notyf.get_data"));
-
-        } catch(Exception $e) {
-
-            return $this->error($e->getMessage(), $customerAppoiments, __("view.notyf.error"));
+            return $this->success($customerAppoiments, __('view.notyf.get_data'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage(), $customerAppoiments, __('view.notyf.error'));
         }
     }
 
-    public function getCustomerForAppoinment(CustomerAppointment $customerAppointment)
+    public function getCustomerForAppoinment()
     {
-        try{
-            $customers = $this->customerAppoinmentService->getCustomer($customerAppointment);
+        try {
+            // Lấy tất cả customer_id từ bảng appointment
+            $customerIds = Customer::pluck('id')->toArray();
 
-            return $this->success($customers, __("view.notyf.get_data"));
-        }catch(Exception $e) {
-            return $this->error($e->getMessage(), '', __("view.notyf.error"));
+            $customers = $this->customerAppoinmentService->getCustomer($customerIds);
+
+            return $this->success($customers, __('view.notyf.get_data'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage(), '', __('view.notyf.error'));
         }
     }
 
-    public function getEmployeeForAppoinment(CustomerAppointment $customerAppointment)
-    {
+    public function getEmployeeForAppoinment(CustomerAppointment $customerAppointment) {}
 
+    public function create(CustomerAppointmentRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $request->validated();
+            $this->customerAppoinmentService->createAppointment($data);
+
+            DB::commit();
+
+            return $this->success($data, __('view.notyf.create'));
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return $this->error($e->getMessage(), $data, __('view.notyf.error'));
+        }
+    }
+
+    public function update(CustomerAppointmentRequest $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $request->validated();
+
+            $fields = ['title', 'customer_id', 'date', 'start_time', 'end_time'];
+            $data   = array_intersect_key($data, array_flip($fields));
+
+            $appointment = CustomerAppointment::findOrFail($id);
+            $appointment->update($data);
+
+            DB::commit();
+
+            return $this->success($data, __('view.notyf.update'));
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return $this->error($e->getMessage(), null, __('view.notyf.error'));
+        }
+    }
+
+    public function destroy(CustomerAppointment $customerAppointment)
+    {
+        try {
+            $this->customerAppoinmentService->deleteCustomerAppointment($customerAppointment);
+
+            return $this->success($customerAppointment, __('view.notyf.delete'));
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return $this->error($e->getMessage(), $customerAppointment, __('view.notyf.error'));
+        }
     }
 }

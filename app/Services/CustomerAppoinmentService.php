@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\CustomerAppointment;
 use App\Repositories\CustomerAppoinmentRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class CustomerAppoinmentService
 {
@@ -16,11 +16,21 @@ class CustomerAppoinmentService
 
     public function getAllCustomerAppoinment()
     {
-        return $this->customerAppoinmentRepository->getALL();
+        return $this->customerAppoinmentRepository->getAll();
     }
 
-    public function getCustomer(CustomerAppointment $customerAppointment)
+    public function getCustomer(array $customerIds)
     {
-        return $this->customerAppoinmentRepository->getCustomerForAppoinment($customerAppointment);
+        return $this->customerAppoinmentRepository->getCustomerForAppoinment($customerIds);
+    }
+
+    public function createAppointment(array $data)
+    {
+        return $this->customerAppoinmentRepository->create($data);
+    }
+
+    public function deleteCustomerAppointment(Model $model)
+    {
+        return $this->customerAppoinmentRepository->destroy($model);
     }
 }

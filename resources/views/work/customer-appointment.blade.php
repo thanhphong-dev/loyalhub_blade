@@ -28,7 +28,7 @@
                             <div class="card-title">{{ __('view.sidebar.menu.customer_appointments') }}</div>
                         </div>
                         <div class="card-body">
-                            <div id='calendar2'></div>
+                            <div id='calendar-appointment'></div>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,16 @@
     @push('page-scripts')
         <script>
             const getFailure = "{{ __('view.api.get.failure') }}";
+            const notyfCreateSuccess = "{{ __('view.notyf.create') }}"
+            const getNotification = "{{ __('view.notyf.notification') }}"
+            const getConfirm = "{{ __('view.notyf.confirm') }}"
+            const getMessSuccess = "{{ __('view.notyf.delete') }}"
+            const getMessError = "{{ __('view.notyf.error') }}"
+            const btnSubmit = "{{ __('view.notyf.btn_confirm') }}"
+            const btnCancel = "{{ __('view.notyf.btn_cancel') }}"
+            const notyfErrorCreateSchedule = "{{ __('view.notyf.error_create_schedule') }}"
+            const notyfErrorUpdateSchedule = "{{ __('view.notyf.error_update_schedule') }}"
         </script>
-        @vite(['resources/js/pages/work/customer-appointment.js'])
+        @vite(['resources/js/pages/work/date.js', 'resources/js/pages/work/customer-appointment.js'])
     @endpush
 @endsection

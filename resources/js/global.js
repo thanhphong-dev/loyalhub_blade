@@ -37,3 +37,5 @@ window.Calendar = Calendar;
 window.dayGridPlugin = dayGridPlugin;
 window.interactionPlugin = interactionPlugin;
 window.allLocales = allLocales;
+
+import flatpickr from "flatpickr";

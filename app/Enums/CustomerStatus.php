@@ -53,10 +53,10 @@ enum CustomerStatus: int
         ];
     }
 
-    public static function groupBooked(){
+    public static function groupBooked()
+    {
         return [
             self::BOOKED,
         ];
     }
-
 }

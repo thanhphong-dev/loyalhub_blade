@@ -7,8 +7,7 @@
 @import '../../shared/simplebar/simplebar.min.css';
 @import '../../shared/prismjs/themes/prism-coy.min.css';
 @import '../../shared/swiper/swiper-bundle.min.css';
-@import '../../shared/flatpickr/flatpickr.min.css';
-@import '../../shared/flatpickr/flatpickr.min.css';
+@import '../../shared/flatpickr/flatpickr.css';
 @import '../../shared/@simonwep/pickr/themes/nano.min.css';
 @import '../../shared/@tarekraafat/autocomplete.js/css/autoComplete.css';
 

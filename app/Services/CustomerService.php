@@ -21,7 +21,8 @@ class CustomerService
         return $this->customerRepository->get($perPage);
     }
 
-    public function getCustomerContact(){
+    public function getCustomerContact()
+    {
         $perPage = config('commons.per_page');
 
         return $this->customerRepository->getContact($perPage);
