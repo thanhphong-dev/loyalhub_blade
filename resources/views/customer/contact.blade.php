@@ -29,14 +29,18 @@
                         <div class="card-body">
                             <div class="row pd-0 mr-0 mb-2 align-items-center">
                                 <div class="col-12 col-xl-3 mb-2 mb-xl-0">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm"
-                                            placeholder="tìm kiếm danh mục..." aria-label="tìm kiếm danh mục..."
-                                            aria-describedby="button-addon1">
-                                        <button class="btn btn-purple tn-wave" type="button" id="button-addon1">
-                                            {{ __('view.button.search') }}
-                                        </button>
-                                    </div>
+                                    <form action="{{ route('customers.contact') }}" method="get">
+                                        <div class="input-group">
+                                            <input type="search" class="form-control form-control-sm"
+                                                name='search' value="{{ request('search') }}"
+                                                placeholder="{{ __('view.search.customer') }}"
+                                                aria-label="{{ __('view.search.customer') }}"
+                                                aria-describedby="button-addon1">
+                                            <button class="btn btn-purple tn-wave" type="submit" id="search">
+                                                {{ __('view.button.search') }}
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
 
                                 <!-- Start::update customer modal -->
@@ -269,14 +273,15 @@
                                                         title="{{ __('view.button.update') }}">
                                                         <i class="ri-edit-line"></i>
                                                     </button>
-                                                    <button class="btn btn-icon btn-sm btn-primary btn-calendar-customer"
+                                                    <button class="btn btn-icon btn-sm btn-primary btn-create-calendar-customer"
                                                         type="button" data-toggle="tooltip" data-placement="top"
-                                                        data-customer="{{ $customer }}"
+                                                        data-customer='@json($customer)'
+                                                        data-url="{{ route('customer_appointments.index') }}"
                                                         title="{{ __('view.button.calendar') }}">
                                                         <i class="ri-calendar-schedule-line"></i>
                                                     </button>
                                                     <a href="{{ asset('storage/'. $customer->file) }}"
-                                                        title="{{ __('view.button.delete') }}"
+                                                        title="{{ __('view.button.dowload') }}"
                                                         download
                                                         class="btn btn-icon btn-sm btn-success dowload-file-customer">
                                                         <i class="ri-download-line"></i>

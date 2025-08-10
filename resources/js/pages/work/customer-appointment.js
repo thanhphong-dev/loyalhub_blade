@@ -6,6 +6,9 @@ import { Calendar } from "@fullcalendar/core";
 
 $(document).ready(function () {
     const csrfToken = $('meta[name="csrf-token"]').attr("content");
+    const customerJson = sessionStorage.getItem(
+        "selectedCustomerForAppointment"
+    );
 
     const state = {
         allCustomers: [],
@@ -98,6 +101,7 @@ $(document).ready(function () {
                         state.bookedCustomerIds = response.data.map((d) =>
                             toStr(d.customer_id)
                         );
+                        console.log("data", response.data);
 
                         const events = response.data.map((item) => ({
                             id: toStr(item.id),
@@ -110,8 +114,11 @@ $(document).ready(function () {
                                 date: item.date,
                                 start_time: item.start_time,
                                 end_time: item.end_time,
+                                employee_name: item.employee_name,
                             },
                         }));
+
+                        console.log("event", events);
 
                         resolve(events);
                     } else {
@@ -130,7 +137,7 @@ $(document).ready(function () {
 
     const updateStatusCustomer = (customerId, status) => {
         return $.ajax({
-            url: `/customer/update-status/${customerId}`,
+            url: `/customers/update-status/${customerId}`,
             type: "POST",
             data: { status },
             headers: { "X-CSRF-TOKEN": csrfToken },
@@ -170,7 +177,7 @@ $(document).ready(function () {
             date: $("#date").val(),
             start_time: $("#start_time").val(),
             end_time: $("#end_time").val(),
-            _method: method,
+            method: method,
         };
 
         $(".text-danger").text("");
@@ -178,7 +185,7 @@ $(document).ready(function () {
         try {
             const res = await $.ajax({
                 url,
-                type: "POST",
+                type: data.method,
                 data,
                 headers: { "X-CSRF-TOKEN": csrfToken },
             });
@@ -186,12 +193,10 @@ $(document).ready(function () {
             if (res.status) {
                 const savedCustomerId = toStr(data.customer_id);
 
-                // Nếu tạo mới thì cập nhật trạng thái khách hàng
                 if (!id) {
                     await updateStatusCustomer(savedCustomerId, 3);
                 }
 
-                // Cập nhật danh sách khách hàng đã đặt
                 if (!state.bookedCustomerIds.includes(savedCustomerId)) {
                     state.bookedCustomerIds.push(savedCustomerId);
                 }
@@ -203,10 +208,9 @@ $(document).ready(function () {
                 if (modal) modal.hide();
                 calendar.refetchEvents();
 
-                if (
-                    typeof notyf !== "undefined" &&
-                    typeof notyfCreateSuccess !== "undefined"
-                ) {
+                if (id && typeof notyfUpdateSuccess) {
+                    notyf.success(notyfUpdateSuccess);
+                } else if (!id && typeof notyfCreateSuccess) {
                     notyf.success(notyfCreateSuccess);
                 }
             } else {
@@ -221,7 +225,6 @@ $(document).ready(function () {
         }
     };
 
-    // Xóa lịch hẹn
     const deleteAppointment = () => {
         const id = $("#calendar-id").val();
         if (!id) {
@@ -272,6 +275,51 @@ $(document).ready(function () {
         });
     };
 
+    function applyDayStyles() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        document.querySelectorAll(".fc-daygrid-day").forEach((cell) => {
+            const dateStr = cell.getAttribute("data-date");
+            const cellDate = new Date(dateStr);
+            cellDate.setHours(0, 0, 0, 0);
+
+            cell.classList.remove("past-day", "today-highlight");
+
+            if (cellDate < today) {
+                cell.classList.add("past-day");
+            } else if (cellDate.getTime() === today.getTime()) {
+                cell.classList.add("today-highlight");
+            }
+        });
+    }
+
+    const setDateToday = () => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, "0");
+        const dd = String(today.getDate()).padStart(2, "0");
+        return `${yyyy}-${mm}-${dd}`;
+    };
+
+    if (customerJson) {
+        const customer = JSON.parse(customerJson);
+
+        sessionStorage.removeItem("selectedCustomerForAppointment");
+
+        fetchCustomersFromApi(customer.id.toString());
+
+        $("#select-customer").val(customer.id.toString());
+
+        $("input[name='title']").val(`Lịch hẹn với ${customer.fullname}`);
+
+        $("#date").val(setDateToday());
+
+        const modalEl = document.getElementById("customer-appointments");
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+    }
+
     //new calendar
     const calendarEl = document.getElementById("calendar-appointment");
     let dropTimeout = null;
@@ -291,22 +339,13 @@ $(document).ready(function () {
         selectable: true,
         selectMirror: true,
         dayCellDidMount: function (info) {
-        const cellDate = moment(info.date).startOf("day");
-        const today = moment().startOf("day");
-
-        if (cellDate.isBefore(today)) {
-            // Ngày quá khứ từ thứ 2 đến CN
-            info.el.style.backgroundColor = "#e0e0e0"; // xám nhạt
-        }
-
-        if (cellDate.isSame(today)) {
-            // Ngày hôm nay
-            info.el.style.backgroundColor = "#ffe0b2"; // cam nhạt
-            info.el.style.border = "2px solid #ff9800"; // viền cam
-        }
-    },
+            applyDayStyles();
+        },
+        datesSet: function () {
+            applyDayStyles();
+        },
         selectAllow: function (selectInfo) {
-            const today = moment().startOf("day"); // hôm nay dạng moment
+            const today = moment().startOf("day");
 
             return selectInfo.start >= today;
         },
@@ -346,8 +385,18 @@ $(document).ready(function () {
                 arg.event.extendedProps.end_time,
                 "HH:mm"
             ).format("HH:mm");
-            const title = arg.event.title || "";
-            return { html: `${start} - ${end} ${title}` };
+            const title = arg.event.title || "Không có nội dung";
+            const employee =
+                arg.event.extendedProps.employee_name || "Chưa có NV";
+
+            return {
+                html: `
+                    <div style="padding:4px 6px;line-height:1.4; ">
+                        <div><strong>Nhân viên:</strong> ${employee}</div>
+                        <div><strong>Lịch hẹn:</strong> ${start} - ${end}</div>
+                        <div><strong>Nội dung:</strong> ${title}</div>
+                    </div> `,
+            };
         },
 
         eventDrop: function (info) {
@@ -377,20 +426,22 @@ $(document).ready(function () {
                     type: "POST",
                     data: data,
                     headers: { "X-CSRF-TOKEN": csrfToken },
-                    success: function (res) {
+                    success: async function (res) {
                         if (res.status) {
-                            notyf.success("Cập nhật thành công!");
+                            notyf.success(notyfUpdateSuccess);
+                            await fetchCustomerAppointments();
+                            calendar.refetchEvents();
                         } else {
-                            notyf.error("Cập nhật thất bại!");
-                            info.revert(); // quay lại thời gian cũ nếu lỗi
+                            notyf.error(notyfError);
+                            info.revert();
                         }
                     },
                     error: function () {
-                        notyf.error("Lỗi khi cập nhật!");
+                        notyf.error(notyfError);
                         info.revert();
                     },
                 });
-            }, 1500); // 1,5 giây
+            }, 1500);
         },
 
         eventSources: [

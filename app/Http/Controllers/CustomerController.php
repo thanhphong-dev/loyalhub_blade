@@ -9,6 +9,8 @@ use App\Models\Service;
 use App\Models\User;
 use App\Services\CustomerService;
 use Exception;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +23,12 @@ class CustomerController extends Controller
         $this->customerService = $customerService;
     }
 
-    public function index()
+    /**
+     * Return view index
+     *
+     * @return View
+     */
+    public function index(): View
     {
         $employees = User::where('id', '!=', auth()->id())->get();
         $services  = Service::all();
@@ -30,7 +37,12 @@ class CustomerController extends Controller
         return view('customer.index', compact('employees', 'services', 'customers'));
     }
 
-    public function customerContact()
+    /**
+     * Return view customerContact
+     *
+     * @return View
+     */
+    public function customerContact(): View
     {
         $employees = User::where('id', '!=', auth()->id())->get();
         $services  = Service::all();
@@ -39,7 +51,13 @@ class CustomerController extends Controller
         return view('customer.contact', compact('employees', 'services', 'customers'));
     }
 
-    public function create(CreateCustomerRequest $request)
+    /**
+     * Create Customer
+     *
+     * @param  \App\Http\Requests\CreateCustomerRequest  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create(CreateCustomerRequest $request): JsonResponse
     {
         DB::beginTransaction();
         try {
@@ -61,7 +79,13 @@ class CustomerController extends Controller
         }
     }
 
-    public function update(UpdateCustomerRequest $request)
+    /**
+     * Update infomation customer
+     *
+     * @param  \App\Http\Requests\UpdateCustomerRequest  $request
+     * @return JsonResponse
+     */
+    public function update(UpdateCustomerRequest $request): JsonResponse
     {
         DB::beginTransaction();
         try {
@@ -89,7 +113,14 @@ class CustomerController extends Controller
         }
     }
 
-    public function updateStatus(Request $request, $id)
+    /**
+     * Update Status Customer
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $id
+     * @return JsonResponse
+     */
+    public function updateStatus(Request $request, $id): JsonResponse
     {
         try {
             $customer = Customer::findOrFail($id);
@@ -98,7 +129,7 @@ class CustomerController extends Controller
             $status = $request->input('status');
 
             if ($status === null) {
-                return $this->error(__('view.notyf.error'), null, 'Status is required');
+                return $this->error(__('view.notyf.error'), null, __('view.notyf.error'));
             }
 
             $customer->status = $status;
@@ -110,7 +141,13 @@ class CustomerController extends Controller
         }
     }
 
-    public function destroy(Customer $customer)
+    /**
+     * Destroy customer
+     *
+     * @param  \App\Models\Customer  $customer
+     * @return JsonResponse
+     */
+    public function destroy(Customer $customer): JsonResponse
     {
         DB::beginTransaction();
         try {

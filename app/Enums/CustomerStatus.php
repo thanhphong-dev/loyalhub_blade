@@ -18,7 +18,7 @@ enum CustomerStatus: int
             self::CONTACTED  => 'Đã liên hệ',
             self::INTERESTED => 'Quan tâm dịch vụ',
             self::BOOKED     => 'Đã lên lịch hẹn',
-            self::SERVICED   => 'Đã sử dụng dịch vụ',
+            self::SERVICED   => 'Đã sử dụng',
             self::CLOSED     => 'Đã đóng',
         };
     }
@@ -57,6 +57,13 @@ enum CustomerStatus: int
     {
         return [
             self::BOOKED,
+        ];
+    }
+
+    public static function groupService()
+    {
+        return [
+            self::SERVICED,
         ];
     }
 }

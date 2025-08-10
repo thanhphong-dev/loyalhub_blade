@@ -13,7 +13,7 @@
                                     {{ __('view.customer.model') }}
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ __('view.customer.list') }}</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('view.customer.schedule') }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -23,13 +23,13 @@
                     <div class="card custom-card">
                         <div class="card-header justify-content-between">
                             <div class="card-title">
-                                {{ __('view.customer.list') }}
+                                {{ __('view.customer.schedule') }}
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="row pd-0 mr-0 mb-2 align-items-center">
                                 <div class="col-12 col-xl-3 mb-2 mb-xl-0">
-                                    <form action="{{ route('customers.index') }}" method="get">
+                                    <form action="{{ route('customer_services.index') }}" method="get">
                                         <div class="input-group">
                                             <input type="search" class="form-control form-control-sm"
                                                 name='search' value="{{ request('search') }}"
@@ -43,155 +43,8 @@
                                     </form>
                                 </div>
 
-                                <div class="col-12 col-xl-9 text-xl-end text-start">
-                                    <button class="btn btn-sm btn-purple btn-wave waves-light" data-bs-toggle="modal"
-                                        data-bs-target="#create-customer">
-                                        <i class="ri-add-line fw-medium align-middle me-1"></i>
-                                        {{ __('view.customer.model') }}
-                                    </button>
-                                </div>
-
-                                <!-- Start::add customer modal -->
-                                <div class="modal modal-lg fade mr-0" id="create-customer" tabindex="-1"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h6 class="modal-title">{{ __('view.button.create') }}</h6>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                </button>
-                                            </div>
-                                            <form id="create-customer-form" action="{{ route('customers.create') }}"
-                                                enctype="multipart/form-data" method="post">
-                                                @csrf
-                                                <div class="modal-body px-4">
-                                                    <div class="row gy-2">
-                                                        <div class="col-xl-6 col-12">
-                                                            <label for="fullname" class="form-label">
-                                                                {{ __('view.customer.full_name') }}
-                                                            </label>
-                                                            <input type="text" class="form-control" id="fullname"
-                                                                name="fullname"
-                                                                placeholder="{{ __('view.placeholder.full_name') }}">
-                                                            <small class="text-danger error-fullname"></small>
-                                                        </div>
-                                                        <div class="col-xl-6 col-12">
-                                                            <label for="phone_numer" class="form-label">
-                                                                {{ __('view.customer.phone_number') }}
-                                                            </label>
-                                                            <input type="text" class="form-control" id="phone_number"
-                                                                name="phone_number"
-                                                                placeholder="{{ __('view.placeholder.phone_number') }}">
-                                                            <small class="text-danger error-phone_number"></small>
-                                                        </div>
-                                                        <div class="col-xl-6 col-12">
-                                                            <label for="email" class="form-label">
-                                                                {{ __('view.customer.email') }}
-                                                            </label>
-                                                            <input type="text" class="form-control" id="email"
-                                                                name="email"
-                                                                placeholder="{{ __('view.placeholder.email') }}">
-                                                            <small class="text-danger error-email"></small>
-                                                        </div>
-                                                        <div class="col-xl-6 col-12">
-                                                            <label for="address" class="form-label">
-                                                                {{ __('view.customer.address') }}
-                                                            </label>
-                                                            <input type="text" class="form-control" id="address"
-                                                                name="address"
-                                                                placeholder="{{ __('view.placeholder.address') }}">
-                                                            <small class="text-danger error-address"></small>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label for="website" class="form-label">
-                                                                {{ __('view.customer.website') }}
-                                                            </label>
-                                                            <input type="text" class="form-control" id="website"
-                                                                name="website"
-                                                                placeholder="{{ __('view.placeholder.website') }}">
-                                                            <small class="text-danger error-website"></small>
-                                                        </div>
-                                                        <div class="col-xl-6 col-12">
-                                                            <label for="source" class="form-label">
-                                                                {{ __('view.customer.source') }}
-                                                            </label>
-                                                            <select name="source" class="form-control" id="source">
-                                                                @foreach ($customerSource as $item)
-                                                                    <option value="{{ $item->value }}">
-                                                                        {{ $item->lable() }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                            <small class="text-danger error-source"></small>
-                                                        </div>
-                                                        <div class="col-xl-6 col-12">
-                                                            <label for="status" class="form-label">
-                                                                {{ __('view.customer.status') }}
-                                                            </label>
-                                                            <select name="status" class="form-control" id="status">
-                                                                @foreach ($customerStatus as $item)
-                                                                    <option value="{{ $item->value }}">
-                                                                        {{ $item->lable() }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                            <small class="text-danger error-status"></small>
-                                                        </div>
-                                                        <div class="col-xl-6 col-12">
-                                                            <label for="assigned_staff_id" class="form-label">
-                                                                {{ __('view.customer.assigned_staff') }}
-                                                            </label>
-                                                            <select name="assigned_staff_id" class="form-control"
-                                                                id="assigned_staff_id">
-                                                                @foreach ($employees as $employee)
-                                                                    <option value="{{ $employee->id }}">
-                                                                        {{ $employee->full_name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                            <small class="text-danger error-assigned_staff_id"></small>
-                                                        </div>
-                                                        <div class="col-xl-6 col-12">
-                                                            <label for="service_id" class="form-label">
-                                                                {{ __('view.customer.service') }}
-                                                            </label>
-                                                            <select name="service_id" class="form-control"
-                                                                id="service_id">
-                                                                @foreach ($services as $service)
-                                                                    <option value="{{ $service->id }}">
-                                                                        {{ $service->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                            <small class="text-danger error-service_id"></small>
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <label for="file" class="form-label">
-                                                                {{ __('view.customer.file') }}
-                                                            </label>
-                                                            <input type="file" class="form-control" id="file"
-                                                                name="file">
-                                                            <small class="text-danger error-file"></small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-                                                        {{ __('view.button.cancel') }}
-                                                    </button>
-                                                    <button type="submit" class="btn btn-purple">
-                                                        {{ __('view.button.confirm') }}
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End::add customer modal -->
-
-                                <!-- Start::update customer modal -->
-                                <div class="modal modal-lg fade mr-0" id="update-customer" tabindex="-1"
+                                <!-- Start::update customer booked modal -->
+                                <div class="modal modal-lg fade mr-0" id="update-customer-service" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -201,12 +54,16 @@
                                                     aria-label="Close">
                                                 </button>
                                             </div>
-                                            <form id="update-customer-form" action="{{ route('customers.update') }}"
+                                            <form id="update-customer-service-form"
+                                                action="{{ route('customer_services.update') }}"
                                                 enctype="multipart/form-data" method="post">
                                                 @csrf
-                                                <div class="modal-body px-4">
+                                                <div class="modal-body px-4 scroll-bar-modal">
                                                     <div class="row gy-2">
-                                                        <input type="hidden" id="edit-id" name="id">
+                                                        <input type="hidden" id="customer_id" name="customer_id">
+                                                        <input type="hidden" id="customer_service_id"
+                                                            name="customer_service_id">
+
                                                         <div class="col-xl-4 col-12">
                                                             <div class="row">
                                                                 <div class="col-12 mt-4">
@@ -295,7 +152,7 @@
                                                             </label>
                                                             <select name="status" class="form-control" id="edit-status">
                                                                 @foreach ($customerStatus as $status)
-                                                                    @if (in_array($status, App\Enums\CustomerStatus::groupNew()))
+                                                                    @if (in_array($status, App\Enums\CustomerStatus::groupService()))
                                                                         <option value="{{ $status->value }}">
                                                                             {{ $status->lable() }}
                                                                         </option>
@@ -332,6 +189,61 @@
                                                             </select>
                                                             <small class="text-danger error-service_id"></small>
                                                         </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="start_date" class="form-label">
+                                                                {{ __('view.customer_service.start_date') }}
+                                                            </label>
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-text text-muted"> <i
+                                                                            class="ri-calendar-line"></i> </div>
+                                                                    <input type="text" class="form-control"
+                                                                        name="start_date" id="start_date"
+                                                                        placeholder="{{ __('view.placeholder.start_date') }}">
+                                                                </div>
+                                                            </div>
+                                                            <small class="text-danger error-start_date"></small>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="end_date" class="form-label">
+                                                                {{ __('view.customer_service.end_date') }}
+                                                            </label>
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-text text-muted"> <i
+                                                                            class="ri-calendar-line"></i> </div>
+                                                                    <input type="text" class="form-control"
+                                                                        name="end_date" id="end_date"
+                                                                        placeholder="{{ __('view.placeholder.end_date') }}">
+                                                                </div>
+                                                            </div>
+                                                            <small class="text-danger error-end_date"></small>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="status_payment" class="form-label">
+                                                                {{ __('view.customer_service.status_payment') }}
+                                                            </label>
+                                                            <select name="status_payment" class="form-control"
+                                                                id="edit-status_payment">
+                                                                @foreach ($customerStatusPayments as $customerStatusPayment)
+                                                                     @if (in_array($customerStatusPayment, App\Enums\CustomerStatusPayment::groupProcessing()))
+                                                                        <option value="{{ $customerStatusPayment->value }}">
+                                                                            {{ $customerStatusPayment->lable() }}
+                                                                        </option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                            <small class="text-danger error-status_payment"></small>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12">
+                                                            <label for="total_paid" class="form-label">
+                                                                {{ __('view.customer_service.total_paid') }}
+                                                            </label>
+                                                            <input type="text" class="form-control" id="edit-total_paid"
+                                                                name="total_paid"
+                                                                placeholder="{{ __('view.placeholder.total_paid') }}">
+                                                            <small class="text-danger error-total_paid"></small>
+                                                        </div>
                                                         <div class="col-xl-12">
                                                             <a href="#"
                                                                 class="file-download badge bg-success text-white"
@@ -362,7 +274,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- End::update customer modal -->
+                                <!-- End::update customer booked modal -->
 
                             </div>
 
@@ -375,10 +287,13 @@
                                             <th scope="col">{{ __('view.customer.full_name') }}</th>
                                             <th scope="col">{{ __('view.customer.email') }}</th>
                                             <th scope="col">{{ __('view.customer.phone_number') }}</th>
-                                            <th scope="col">{{ __('view.customer.address') }}</th>
                                             <th scope="col">{{ __('view.customer.status') }}</th>
-                                            <th scope="col">{{ __('view.customer.website') }}</th>
+                                            <th scope="col">{{ __('view.customer_service.start_date') }}</th>
+                                            <th scope="col">{{ __('view.customer_service.start_date') }}</th>
+                                            <th scope="col">{{ __('view.customer_service.expiration_date') }}</th>
                                             <th scope="col">{{ __('view.customer.service') }}</th>
+                                            <th scope="col">{{ __('view.customer_service.total_paid') }}</th>
+                                            <th scope="col">{{ __('view.customer_service.status_payment') }}</th>
                                             <th scope="col">{{ __('view.customer.source') }}</th>
                                             <th scope="col">{{ __('view.customer.assigned_staff') }}</th>
                                             <th scope="col">{{ __('view.customer.user_create') }}</th>
@@ -386,49 +301,84 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($customers as $customer)
+                                        @forelse ($customerServices as $customerService)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
                                                     <span class="avatar avatar-ms avatar-rounded">
-                                                        <img src="{{ $customer->logo ? asset('storage/' . $customer->logo) : asset('images/employee/avatar.png') }}"
+                                                        <img src="{{ $customerService->customer->logo ? asset('storage/' . $customerService->customer->logo) : asset('images/employee/avatar.png') }}"
                                                             alt="img">
                                                     </span>
                                                 </td>
-                                                <td>{{ $customer->fullname }}</td>
-                                                <td>{{ $customer->email ? $customer->email : 'null' }}</td>
-                                                <td>{{ $customer->phone_number ? $customer->phone_number : 'null' }}</td>
-                                                <td>{{ $customer->address ? $customer->address : 'null' }}</td>
+                                                <td>{{ $customerService->customer->fullname }}</td>
+                                                <td>{{ $customerService->customer->email ? $customerService->customer->email : 'null' }}
+                                                </td>
+                                                <td>{{ $customerService->customer->phone_number ? $customerService->customer->phone_number : 'null' }}
+                                                </td>
                                                 <td>
-                                                    <span class="badge {{ $customer->status->colorClass() }} text-white">
-                                                        {{ $customer->status->lable() }}
+                                                    <span
+                                                        class="badge {{ $customerService->customer->status->colorClass() }} text-white">
+                                                        {{ $customerService->customer->status->lable() }}
                                                     </span>
                                                 </td>
-                                                <td>{{ $customer->website ? $customer->website : 'null' }}</td>
-                                                <td>{{ $customer->service->name }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($customerService->start_date)->format('d/m/Y') }}
+                                                </td>
+
+                                                <td>{{ \Carbon\Carbon::parse($customerService->end_date)->format('d/m/Y') }}
+                                                </td>
                                                 <td>
-                                                    <span class="badge {{ $customer->source->colorClass() }} text-white">
-                                                        {{ $customer->source->lable() }}
+                                                    @php
+                                                        $endDate = \Carbon\Carbon::parse($customerService->end_date);
+                                                        $today = \Carbon\Carbon::today();
+                                                        $daysLeft = $today->diffInDays($endDate, false);
+                                                    @endphp
+
+                                                    @if ($daysLeft < 0)
+                                                        <span
+                                                            class="text-danger fw-bold">{{ __('view.customer_service.has_expired') }}</span>
+                                                    @elseif ($daysLeft <= 30)
+                                                        <span class="text-danger fw-bold">Còn {{ $daysLeft }}
+                                                            ngày</span>
+                                                    @else
+                                                        <span class="text-success fw-bold">Còn {{ $daysLeft }}
+                                                            ngày</span>
+                                                    @endif
+                                                </td>
+
+                                                <td>{{ $customerService->customer->service->name }}</td>
+                                                <td>{{ number_format($customerService->total_paid, 0, ',', '.') }}</td>
+                                                <td>
+                                                    <span
+                                                        class="badge {{ $customerService->status_payment->colorClass() }} text-white">
+                                                        {{ $customerService->status_payment->lable() }}
                                                     </span>
                                                 </td>
-                                                <td>{{ optional($customer->assignedStaff)->full_name }}</td>
-                                                <td>{{ optional($customer->userCreate)->full_name }}</td>
+                                                <td>
+                                                    <span
+                                                        class="badge {{ $customerService->customer->source->colorClass() }} text-white">
+                                                        {{ $customerService->customer->source->lable() }}
+                                                    </span>
+                                                </td>
+                                                <td>{{ $customerService->customer->assignedStaff->full_name }}</td>
+                                                <td>{{ $customerService->customer->userCreate->full_name }}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-icon btn-sm btn-purple btn-edit-customer"
+                                                    <button
+                                                        class="btn btn-icon btn-sm btn-purple btn-edit-customer-service"
                                                         type="button" data-toggle="tooltip" data-placement="top"
-                                                        data-customer="{{ $customer }}"
+                                                        data-customer="{{ $customerService->customer }}"
+                                                        data-customer_service='@json($customerService)'
                                                         title="{{ __('view.button.update') }}">
                                                         <i class="ri-edit-line"></i>
                                                     </button>
-                                                    <a href="{{ asset('storage/' . $customer->file) }}"
-                                                        title="{{ __('view.button.delete') }}" download
+                                                    <a href="{{ asset('storage/' . $customerService->customer->file) }}"
+                                                        title="{{ __('view.button.dowload') }}" download
                                                         class="btn btn-icon btn-sm btn-success dowload-file-customer">
                                                         <i class="ri-download-line"></i>
                                                     </a>
                                                     <a href="javascript:void(0);"
-                                                        data-url="{{ route('customers.destroy', $customer) }}"
+                                                        data-url="{{ route('customer_services.destroy', $customerService) }}"
                                                         title="{{ __('view.button.delete') }}"
-                                                        class="btn btn-icon btn-sm btn-danger delete-customer">
+                                                        class="btn btn-icon btn-sm btn-danger delete-customer-service">
                                                         <i class="ri-delete-bin-line"></i>
                                                     </a>
                                                 </td>
@@ -455,5 +405,5 @@
         const btnSubmit = "{{ __('view.notyf.btn_confirm') }}"
         const btnCancel = "{{ __('view.notyf.btn_cancel') }}"
     </script>
-    @vite(['resources/js/pages/customer/index.js'])
+    @vite(['resources/js/pages/customer/date.js', 'resources/js/pages/customer/service.js'])
 @endsection

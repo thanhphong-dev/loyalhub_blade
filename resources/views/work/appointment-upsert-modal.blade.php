@@ -33,7 +33,7 @@
                                 <div class="input-group-text text-muted"> <i class="ri-time-line"></i>
                                 </div>
                                 <input type="text" class="form-control" name="start_time" id="start_time"
-                                    placeholder="Choose time">
+                                    placeholder="{{ __('view.placeholder.start_time') }}">
                             </div>
                         </div>
                         <small class="text-danger error-start_time"></small>
@@ -47,7 +47,7 @@
                                 <div class="input-group-text text-muted"> <i class="ri-time-line"></i>
                                 </div>
                                 <input type="text" class="form-control" name="end_time" id="end_time"
-                                    placeholder="Choose time">
+                                    placeholder="{{ __('view.placeholder.end_time') }}">
                             </div>
                         </div>
                         <small class="text-danger error-end_time"></small>
@@ -56,13 +56,11 @@
                         <label for="date" class="form-label">
                             {{ __('view.customer_appointment.date') }}
                         </label>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
-                                    <input type="text" class="form-control" name="date" id="date"
-                                        placeholder="Choose date">
-                                </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+                                <input type="text" class="form-control" name="date" id="date"
+                                    placeholder="{{ __('view.placeholder.date_appointment') }}">
                             </div>
                         </div>
                         <small class="text-danger error-date"></small>

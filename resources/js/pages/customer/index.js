@@ -104,4 +104,25 @@ $(document).ready(function () {
             reader.readAsDataURL(file);
         }
     });
+
+    $(".btn-create-calendar-customer").on('click', function () {
+        const customerJson = $(this).attr("data-customer");
+        const url = $(this).data('url');
+        if (!customerJson) return;
+
+        try {
+            const customer = JSON.parse(customerJson);
+
+            // Lưu customer vào sessionStorage
+            sessionStorage.setItem(
+                "selectedCustomerForAppointment",
+                JSON.stringify(customer)
+            );
+
+            // Chuyển sang trang calendar
+            window.location.href = url;
+        } catch (e) {
+            console.error("Invalid customer JSON", e);
+        }
+    });
 });

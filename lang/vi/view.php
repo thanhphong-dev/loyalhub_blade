@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'customer_service' => [
+        'customer'        => 'Khách hàng',
+        'start_date'      => 'Ngày bắt đầu',
+        'end_date'        => 'Ngày kết thúc',
+        'total_paid'      => 'Tổng thanh toán',
+        'payment_method'  => 'Phương thức thanh toán',
+        'note'            => 'Ghi chú',
+        'status'          => 'Trạng thái',
+        'expiration_date' => 'Ngày hết hạn',
+        'has_expired'     => 'Đã hết hạn',
+        'status_payment'  => 'Trạng thái thanh toán',
+    ],
     'customer_appointment' => [
         'temporal_status' => 'Trạng thái thời gian',
         'title'           => 'Tên cuộc hẹn',
@@ -26,6 +38,8 @@ return [
         'file'           => 'File',
         'contact'        => 'Liên hệ',
         'schedule'       => 'Lịch hẹn',
+        'time'           => 'Thời gian',
+        'date'           => 'Ngày hẹn',
     ],
     'service' => [
         'model'           => 'Dịch vụ',
@@ -75,6 +89,8 @@ return [
         'function' => 'Chức năng',
         'delete'   => 'Xóa',
         'calendar' => 'Đặt lịch',
+        'service'  => 'Dịch vụ',
+        'dowload'  => 'Tải file',
     ],
     'notyf' => [
         'create'                => 'Thêm mới dữ liệu thành công',
@@ -93,15 +109,21 @@ return [
         'null' => 'Không có dữ liệu hiển thị !',
     ],
     'placeholder' => [
-        'name'            => 'nhập tên...',
-        'description'     => 'nhập mô tả...',
-        'slug_permission' => 'ví dụ: post.add...',
-        'price'           => 'nhập giá...',
-        'full_name'       => 'nhập họ và tên...',
-        'phone_number'    => 'nhập số điện thoại...',
-        'email'           => 'nhập email...',
-        'address'         => 'nhập địa chỉ...',
-        'website'         => 'nhập website...',
+        'name'             => 'nhập tên...',
+        'description'      => 'nhập mô tả...',
+        'slug_permission'  => 'ví dụ: post.add...',
+        'price'            => 'nhập giá...',
+        'full_name'        => 'nhập họ và tên...',
+        'phone_number'     => 'nhập số điện thoại...',
+        'email'            => 'nhập email...',
+        'address'          => 'nhập địa chỉ...',
+        'website'          => 'nhập website...',
+        'start_date'       => 'chọn ngày bắt đầu',
+        'end_date'         => 'chọn ngày kết thúc',
+        'total_paid'       => 'nhập tổng thanh toán...',
+        'start_time'       => 'chọn giờ bắt đầu',
+        'end_time'         => 'chọn giờ kết thúc',
+        'date_appointment' => 'chọn ngày bắt đầu',
     ],
     'vesion' => [
         'name'   => 'Loyal Hub version @2025',
@@ -157,6 +179,9 @@ return [
         'get' => [
             'failure' => 'Lấy dữ liệu thất bại.',
         ],
+    ],
+    'search' => [
+        'customer' => 'tìm kiếm khách hàng...',
     ],
 
 ];

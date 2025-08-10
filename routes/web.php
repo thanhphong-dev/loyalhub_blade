@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -9,6 +10,14 @@ use App\Http\Controllers\ServiceCategoryController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('employees.index');
+    }
+
+    return view('auth.login');
+});
 
 Auth::routes();
 
@@ -57,22 +66,31 @@ Route::middleware('auth')->group(function () {
 
     // customer
     Route::prefix('customers')->group(function () {
-        Route::get('/index', [CustomerController::class, 'index'])->name('customers.index');
-        Route::post('/create', [CustomerController::class, 'create'])->name('customers.create');
-        Route::post('/update', [CustomerController::class, 'update'])->name('customers.update');
-        Route::post('/update-status/{id}', [CustomerController::class, 'updateStatus'])->name('customers.update-status');
-        Route::delete('/destroy/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
-        Route::get('/contact', [CustomerController::class, 'customerContact'])->name('customers.contact');
+        Route::get('/index', [CustomerController::class, 'index'])->name('customers.index')->can('customers.index');
+        Route::post('/create', [CustomerController::class, 'create'])->name('customers.create')->can('customers.create');
+        Route::post('/update', [CustomerController::class, 'update'])->name('customers.update')->can('customers.update');
+        Route::post('/update-status/{id}', [CustomerController::class, 'updateStatus'])->name('customers.update-status')->can('customers.update-status');
+        Route::delete('/destroy/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy')->can('customers.destroy');
+        Route::get('/contact', [CustomerController::class, 'customerContact'])->name('customers.contact')->can('customers.contact');
     });
 
     // customer appointment
     Route::prefix('customer-appointments')->group(function () {
-        Route::get('/index', [CustomerAppointmentController::class, 'index'])->name('customer_appointments.index');
-        Route::get('/get-all', [CustomerAppointmentController::class, 'getALL'])->name('customer_appointments.get_all');
-        Route::get('/get-customer', [CustomerAppointmentController::class, 'getCustomerForAppoinment'])->name('customer_appointments.get_customer_for_edit');
-        Route::get('/get-employee/{customerAppointment}', [CustomerAppointmentController::class, 'getEmployeeForAppoinment'])->name('customer_appointments.get_employee_for_edit');
-        Route::post('/create', [CustomerAppointmentController::class, 'create'])->name('customer_appointments.create');
-        Route::put('/update/{id}', [CustomerAppointmentController::class, 'update'])->name('customer_appointments.update');
-        Route::delete('/delete/{customerAppointment}', [CustomerAppointmentController::class, 'destroy'])->name('customer_appointments.destroy');
+        Route::get('/index', [CustomerAppointmentController::class, 'index'])->name('customer_appointments.index')->can('customer_appointments.index');
+        Route::get('/get-all', [CustomerAppointmentController::class, 'getALL'])->name('customer_appointments.get_all')->can('customer_appointments.get_all');
+        Route::get('/booked', [CustomerAppointmentController::class, 'customerBooked'])->name('customer_appointments.booked')->can('customer_appointments.booked');
+        Route::get('/get-customer', [CustomerAppointmentController::class, 'getCustomerForAppoinment'])->name('customer_appointments.get_customer_for_appoinment')->can('customer_appointments.get_customer_for_appoinment');
+        Route::post('/create', [CustomerAppointmentController::class, 'create'])->name('customer_appointments.create')->can('customer_appointments.create');
+        Route::put('/update/{id}', [CustomerAppointmentController::class, 'update'])->name('customer_appointments.update')->can('customer_appointments.update');
+        Route::post('/updateCustomerBooked', [CustomerAppointmentController::class, 'updateCustomerBooked'])->name('customer_appointments.update_booked')->can('customer_appointments.update_booked');
+        Route::delete('/delete/{customerAppointment}', [CustomerAppointmentController::class, 'destroy'])->name('customer_appointments.destroy')->can('customer_appointments.destroy');
+    });
+
+    // customer service
+    Route::prefix('customer-services')->group(function () {
+        Route::get('/index', [CustomerServiceController::class, 'index'])->name('customer_services.index')->can('customer_services.index');
+        Route::post('/create', [CustomerServiceController::class, 'create'])->name('customer_services.create')->can('customer_services.create');
+        Route::post('/update', [CustomerServiceController::class, 'update'])->name('customer_services.update')->can('customer_services.update');
+        Route::delete('/destroy/{customerService}', [CustomerServiceController::class, 'destroy'])->name('customer_services.destroy')->can('customer_services.destroy');
     });
 });

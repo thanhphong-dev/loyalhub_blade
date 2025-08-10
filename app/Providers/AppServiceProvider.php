@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Enums\CustomerServicePaymentMethod;
 use App\Enums\CustomerSource;
 use App\Enums\CustomerStatus;
+use App\Enums\CustomerStatusPayment;
 use App\Enums\ServiceStatus;
 use App\Models\Customer;
 use App\Models\User;
@@ -37,5 +39,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('serviceStatus', ServiceStatus::cases());
         View::share('customerSource', CustomerSource::cases());
         View::share('customerStatus', CustomerStatus::cases());
+        View::share('customerPaymentMethods', CustomerServicePaymentMethod::cases());
+        View::share('customerStatusPayments', CustomerStatusPayment::cases());
     }
 }

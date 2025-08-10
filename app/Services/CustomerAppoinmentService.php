@@ -24,9 +24,21 @@ class CustomerAppoinmentService
         return $this->customerAppoinmentRepository->getCustomerForAppoinment($customerIds);
     }
 
+    public function getCustomerBooked()
+    {
+        $perPage = config('commons.per_page');
+
+        return $this->customerAppoinmentRepository->getBooked($perPage);
+    }
+
     public function createAppointment(array $data)
     {
         return $this->customerAppoinmentRepository->create($data);
+    }
+
+    public function updateAppointment(Model $model, array $data)
+    {
+        return $this->customerAppoinmentRepository->update($model, $data);
     }
 
     public function deleteCustomerAppointment(Model $model)

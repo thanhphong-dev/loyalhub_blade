@@ -36,7 +36,10 @@
                         <a href="{{ route('customers.contact') }}" class="side-menu__item">{{ __("view.customer.contact") }}</a>
                     </li>
                     <li class="slide">
-                        <a href="#" class="side-menu__item">{{ __("view.customer.schedule") }}</a>
+                        <a href="{{ route('customer_appointments.booked') }}" class="side-menu__item">{{ __("view.customer.schedule") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('customer_services.index') }}" class="side-menu__item">{{ __("view.customer.service") }}</a>
                     </li>
                 </ul>
             </li>

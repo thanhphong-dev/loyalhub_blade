@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
     <div class="main-content app-content">
@@ -40,6 +40,7 @@
         <script>
             const getFailure = "{{ __('view.api.get.failure') }}";
             const notyfCreateSuccess = "{{ __('view.notyf.create') }}"
+            const notyfUpdateSuccess = "{{ __('view.notyf.update') }}"
             const getNotification = "{{ __('view.notyf.notification') }}"
             const getConfirm = "{{ __('view.notyf.confirm') }}"
             const getMessSuccess = "{{ __('view.notyf.delete') }}"
@@ -48,6 +49,7 @@
             const btnCancel = "{{ __('view.notyf.btn_cancel') }}"
             const notyfErrorCreateSchedule = "{{ __('view.notyf.error_create_schedule') }}"
             const notyfErrorUpdateSchedule = "{{ __('view.notyf.error_update_schedule') }}"
+            const notyfError = "{{ __('view.notyf.error') }}"
         </script>
         @vite(['resources/js/pages/work/date.js', 'resources/js/pages/work/customer-appointment.js'])
     @endpush

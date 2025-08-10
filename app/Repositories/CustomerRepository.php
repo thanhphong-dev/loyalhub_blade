@@ -33,7 +33,6 @@ class CustomerRepository implements BaseRepositoryInterface
             ->whereIn('status', [
                 CustomerStatus::CONTACTED,
                 CustomerStatus::INTERESTED,
-                CustomerStatus::BOOKED,
             ])
             ->filter(request())
             ->paginate($perPage)

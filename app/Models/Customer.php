@@ -34,6 +34,17 @@ class Customer extends Model
         'status' => CustomerStatus::class,
     ];
 
+    protected array $multiColumnSearch = [
+        'search_field' => 'search',
+        'fields'       => [
+            'fullname'     => 'like',
+            'email'        => 'like',
+            'website'      => 'like',
+            'address'      => 'like',
+            'phone_number' => 'like',
+        ],
+    ];
+
     public function service()
     {
         return $this->belongsTo(Service::class);
@@ -47,5 +58,15 @@ class Customer extends Model
     public function assignedStaff()
     {
         return $this->belongsTo(User::class, 'assigned_staff_id');
+    }
+
+    public function customerAppointment()
+    {
+        return $this->belongsTo(CustomerAppointment::class, 'customer_id');
+    }
+
+    public function latestAppointment()
+    {
+        return $this->hasOne(CustomerAppointment::class, 'customer_id')->latestOfMany();
     }
 }
