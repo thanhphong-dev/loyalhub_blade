@@ -6,7 +6,76 @@
             </svg>
         </div>
         <ul class="main-menu">
+            <li class="slide__category"><span class="category-name">{{ __("view.sidebar.module.crm") }}</span></li>
+            <li class="slide has-sub">
+                <a href="javascript:void(0);" class="side-menu__item">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <rect width="256" height="256" fill="none" />
+                        <rect x="48" y="48" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="144" y="48" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="48" y="144" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="144" y="144" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <path d="M2 22C2 17.5817 5.58172 14 10 14C14.4183 14 18 17.5817 18 22H16C16 18.6863 13.3137 16 10 16C6.68629 16 4 18.6863 4 22H2ZM10 13C6.685 13 4 10.315 4 7C4 3.685 6.685 1 10 1C13.315 1 16 3.685 16 7C16 10.315 13.315 13 10 13ZM10 11C12.21 11 14 9.21 14 7C14 4.79 12.21 3 10 3C7.79 3 6 4.79 6 7C6 9.21 7.79 11 10 11ZM18.2837 14.7028C21.0644 15.9561 23 18.752 23 22H21C21 19.564 19.5483 17.4671 17.4628 16.5271L18.2837 14.7028ZM17.5962 3.41321C19.5944 4.23703 21 6.20361 21 8.5C21 11.3702 18.8042 13.7252 16 13.9776V11.9646C17.6967 11.7222 19 10.264 19 8.5C19 7.11935 18.2016 5.92603 17.041 5.35635L17.5962 3.41321Z"></path>
+                        </svg>
+                    <span class="side-menu__label">{{ __("view.sidebar.module.customer") }}</span>
+                    <i class="ri-arrow-right-s-line side-menu__angle"></i>
+                </a>
+                <ul class="slide-menu child1">
+                    <li class="slide side-menu__label1">
+                        <a href="javascript:void(0)">{{ __("view.sidebar.module.service") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('customers.index') }}" class="side-menu__item">{{ __("view.customer.list") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('customers.contact') }}" class="side-menu__item">{{ __("view.customer.contact") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('customer_appointments.booked') }}" class="side-menu__item">{{ __("view.customer.schedule") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('customer_services.index') }}" class="side-menu__item">{{ __("view.customer.service") }}</a>
+                    </li>
+                </ul>
+            </li>
             <li class="slide__category"><span class="category-name">{{ __("view.sidebar.module.operation") }}</span></li>
+            <li class="slide has-sub">
+                <a href="javascript:void(0);" class="side-menu__item">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <rect width="256" height="256" fill="none" />
+                        <rect x="48" y="48" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="144" y="48" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="48" y="144" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <rect x="144" y="144" width="64" height="64" rx="8" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <path d="M20 2C20.5523 2 21 2.44772 21 3V6.757L19 8.757V4H5V20H19V17.242L21 15.242V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20ZM21.7782 8.80761L23.1924 10.2218L15.4142 18L13.9979 17.9979L14 16.5858L21.7782 8.80761ZM13 12V14H8V12H13ZM16 8V10H8V8H16Z"></path>
+                        </svg>
+                    <span class="side-menu__label">{{ __("view.sidebar.module.work") }}</span>
+                    <i class="ri-arrow-right-s-line side-menu__angle"></i>
+                </a>
+                <ul class="slide-menu child1">
+                    <li class="slide side-menu__label1">
+                        <a href="#">{{ __("view.sidebar.module.work") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('customer_appointments.index') }}" class="side-menu__item">{{ __("view.sidebar.menu.customer_appointments") }}</a>
+                    </li>
+                    <li class="slide">
+                        <a href="#" class="side-menu__item">{{ __("view.sidebar.menu.list") }}</a>
+                    </li>
+
+                </ul>
+            </li>
+
             <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">
                     <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"

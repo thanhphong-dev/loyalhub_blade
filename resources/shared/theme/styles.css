@@ -15323,8 +15323,8 @@ ul.available-doctors-list li:last-child {
   padding: 0 0.25rem !important;
 }
 .fc .fc-button-primary {
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
+  background-color: var(--purple-color) !important;
+  border-color: var(--purple-color) !important;
 }
 .fc .fc-non-business {
   background: var(--custom-white) !important;
