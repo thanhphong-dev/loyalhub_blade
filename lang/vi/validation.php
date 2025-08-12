@@ -55,6 +55,7 @@ return [
     'exists'            => 'Giá trị đã chọn của :attribute không hợp lệ',
     'extensions'        => ':attribute phải có một trong các phần mở rộng sau: :values',
     'file'              => ':attribute phải là một tệp',
+    'phone'             => ':attribute không đúng định dạng',
     'filled'            => ':attribute không được để trống',
     'gt'                => [
         'array'   => ':attribute phải có nhiều hơn :value phần tử',

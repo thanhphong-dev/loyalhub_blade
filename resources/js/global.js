@@ -28,3 +28,14 @@ window.notyf = new Notyf({
         y: "top",
     },
 });
+
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import allLocales from '@fullcalendar/core/locales-all';
+window.Calendar = Calendar;
+window.dayGridPlugin = dayGridPlugin;
+window.interactionPlugin = interactionPlugin;
+window.allLocales = allLocales;
+
+import flatpickr from "flatpickr";

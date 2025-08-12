@@ -149,7 +149,7 @@
                                             </div>
                                             <form id="update-role" action="{{ route('roles.update') }}" method="post">
                                                 @csrf
-                                                <div class="modal-body px-4">
+                                                <div class="modal-body px-4 scroll-bar-modal">
                                                     <div class="row gy-2">
                                                         <input type="hidden" id="edit-id" name="id">
                                                         <div class="col-12">

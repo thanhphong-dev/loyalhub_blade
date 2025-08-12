@@ -1,0 +1,39 @@
+.scroll-bar-modal{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+.fc-disabled-day {
+    background-color: #e0e0e0 !important;
+    opacity: 0.6;
+    pointer-events: none;
+}
+.fc-daygrid-event {
+    white-space: normal !important; /* cho phép xuống dòng */
+    overflow-wrap: break-word;
+}
+
+.fc-daygrid-day.past-day > .fc-daygrid-day-frame {
+  background-color: #e0e0e0 !important;
+  opacity: 1 !important;
+}
+
+.fc-daygrid-day.past-day .fc-daygrid-day-bg,
+.fc-daygrid-day.past-day .fc-daygrid-bg-harness,
+.fc-daygrid-day.past-day .fc-non-business {
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+.fc-daygrid-day.today-highlight > .fc-daygrid-day-frame {
+  background-color: #ffecb3 !important; /* màu vàng nhạt */
+}
+
+.fc-daygrid-day-number {
+  position: relative;
+  z-index: 3;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background-color: #c2b3ff;
+}
+
