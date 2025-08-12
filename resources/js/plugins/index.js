@@ -17,5 +17,8 @@ import '../../shared/@simonwep/pickr/pickr.es5.min.js';
 import '../../shared/custom-switcher.min.js';
 import '../../shared/swiper/swiper-bundle.min.js';
 import '../../shared/particles/particles.js';
+import '../../shared/flatpickr/flatpickr.js';
+import '../../shared/moment/min/moment.min.js';
+import '../../shared/fullcalendar/index.global.min.js';
 
 import './error.js';

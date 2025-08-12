@@ -182,21 +182,6 @@
                                                             role="tabpanel" aria-labelledby="info-tab">
                                                             <div class="row gy-2">
                                                                 <div class="col-xl-4 col-12 p-0 m-0">
-                                                                    {{-- <div class="col-12">
-                                                                        <img id="edit-avatar_url" class="rounded-circle"
-                                                                            style="width: 200px; height: 200px;"
-                                                                            src="{{ old('avatar_url') ? old('avatar_url') : asset('images/employee/avatar.png') }}"
-                                                                            alt="{{ __('view.employee.avatar') }}">
-                                                                    </div>
-
-                                                                    <div class="col-12 mt-4">
-                                                                        <input type="file" id="avatar_url"
-                                                                            name="avatar_url" accept="image/*">
-                                                                        @error('avatar_url')
-                                                                            <small
-                                                                                class="text-danger">{{ $message }}</small>
-                                                                        @enderror
-                                                                    </div> --}}
                                                                     <div class="col-12 mt-4">
                                                                         <span
                                                                             class="avatar avatar-xxl p-1 bg-light border avatar-rounded">
