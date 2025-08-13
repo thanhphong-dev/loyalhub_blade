@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'task' => [
+        'list'        => 'Danh sách',
+        'module'      => 'Công việc',
+        'search'      => 'tìm kiếm công việc...',
+        'pending'     => 'Chưa xử lý',
+        'in_progress' => 'Đang tiến hành',
+        'completed'   => 'Đã hoàn thành',
+        'overdue'     => 'Đã quá hạn',
+    ],
     'customer_service' => [
         'customer'        => 'Khách hàng',
         'start_date'      => 'Ngày bắt đầu',
@@ -91,6 +100,7 @@ return [
         'calendar' => 'Đặt lịch',
         'service'  => 'Dịch vụ',
         'dowload'  => 'Tải file',
+        'show_all' => 'Xem tất cả',
     ],
     'notyf' => [
         'create'                => 'Thêm mới dữ liệu thành công',

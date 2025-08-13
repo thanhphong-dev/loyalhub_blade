@@ -37,3 +37,6 @@
   background-color: #c2b3ff;
 }
 
+.ZYNIX-kanban-board .kanban-tasks-type:last-child {
+    margin-right: 0;
+}

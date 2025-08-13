@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServiceCategoryController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -92,5 +93,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/create', [CustomerServiceController::class, 'create'])->name('customer_services.create')->can('customer_services.create');
         Route::post('/update', [CustomerServiceController::class, 'update'])->name('customer_services.update')->can('customer_services.update');
         Route::delete('/destroy/{customerService}', [CustomerServiceController::class, 'destroy'])->name('customer_services.destroy')->can('customer_services.destroy');
+    });
+
+    // task
+    Route::prefix('tasks')->group(function () {
+        Route::get('/index', [TaskController::class, 'index'])->name('tasks.index');
     });
 });

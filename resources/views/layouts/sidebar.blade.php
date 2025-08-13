@@ -70,7 +70,7 @@
                         <a href="{{ route('customer_appointments.index') }}" class="side-menu__item">{{ __("view.sidebar.menu.customer_appointments") }}</a>
                     </li>
                     <li class="slide">
-                        <a href="#" class="side-menu__item">{{ __("view.sidebar.menu.list") }}</a>
+                        <a href="{{ route('tasks.index') }}" class="side-menu__item">{{ __("view.sidebar.menu.list") }}</a>
                     </li>
 
                 </ul>

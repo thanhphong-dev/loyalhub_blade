@@ -10,6 +10,7 @@
 @import '../../shared/flatpickr/flatpickr.css';
 @import '../../shared/@simonwep/pickr/themes/nano.min.css';
 @import '../../shared/@tarekraafat/autocomplete.js/css/autoComplete.css';
+@import '../../shared/dragula/dragula.min.css';
 
 
 @import './custom.css';

@@ -20,5 +20,5 @@ import '../../shared/particles/particles.js';
 import '../../shared/flatpickr/flatpickr.js';
 import '../../shared/moment/min/moment.min.js';
 import '../../shared/fullcalendar/index.global.min.js';
-
+import '../../shared/dragula/dragula.min.js'
 import './error.js';
