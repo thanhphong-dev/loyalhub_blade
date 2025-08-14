@@ -7,6 +7,7 @@ use App\Enums\CustomerSource;
 use App\Enums\CustomerStatus;
 use App\Enums\CustomerStatusPayment;
 use App\Enums\ServiceStatus;
+use App\Enums\TaskStatus;
 use App\Models\Customer;
 use App\Models\User;
 use App\Observers\CustomerObserver;
@@ -41,5 +42,6 @@ class AppServiceProvider extends ServiceProvider
         View::share('customerStatus', CustomerStatus::cases());
         View::share('customerPaymentMethods', CustomerServicePaymentMethod::cases());
         View::share('customerStatusPayments', CustomerStatusPayment::cases());
+        View::share('taskStatus', TaskStatus::cases());
     }
 }

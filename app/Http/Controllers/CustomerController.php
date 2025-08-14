@@ -52,6 +52,41 @@ class CustomerController extends Controller
     }
 
     /**
+     * Get statuses customer by staff
+     *
+     * @param  int  $staffId
+     * @return JsonResponse
+     */
+    public function getStatusesByStaff(int $staffId): JsonResponse
+    {
+        try {
+            $data = $this->customerService->getStatusesForStaff($staffId);
+
+            return $this->success($data, __('view.notyf.get_data'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage(), $data, __('view.notyf.error'));
+        }
+    }
+
+    /**
+     * Get customer by status
+     *
+     * @param  int  $staffId
+     * @param  int  $status
+     * @return JsonResponse
+     */
+    public function getByStatus(int $staffId, int $status): JsonResponse
+    {
+        try {
+            $data = $this->customerService->getCustomersForStaffByStatus($staffId, $status);
+
+            return $this->success($data, __('view.notyf.get_data'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage(), $data, __('view.notyf.error'));
+        }
+    }
+
+    /**
      * Create Customer
      *
      * @param  \App\Http\Requests\CreateCustomerRequest  $request

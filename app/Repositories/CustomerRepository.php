@@ -39,6 +39,38 @@ class CustomerRepository implements BaseRepositoryInterface
             ->withQueryString();
     }
 
+    /**
+     * Get statuses customer by staff
+     *
+     * @param  int  $sraffId
+     */
+    public function getStatusesByStaff(int $staffId)
+    {
+        $statuses = Customer::where('assigned_staff_id', $staffId)
+            ->select('status')
+            ->distinct()
+            ->pluck('status');
+
+        return $statuses->map(function ($statusValue) {
+            $enum = $statusValue instanceof CustomerStatus
+                ? $statusValue
+                : CustomerStatus::from((int) $statusValue);
+
+            return [
+                'value' => $enum->value,
+                'label' => $enum->lable(),
+            ];
+        });
+    }
+
+    public function getCustomersByStatus(int $sraffId, int $status)
+    {
+        return Customer::where('assigned_staff_id', $sraffId)
+            ->where('status', $status)
+            ->select('id', 'fullname')
+            ->get();
+    }
+
     public function create(array $data)
     {
         return $this->customer->create($data);

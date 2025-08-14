@@ -2,13 +2,23 @@
 
 return [
     'task' => [
-        'list'        => 'Danh sách',
-        'module'      => 'Công việc',
-        'search'      => 'tìm kiếm công việc...',
-        'pending'     => 'Chưa xử lý',
-        'in_progress' => 'Đang tiến hành',
-        'completed'   => 'Đã hoàn thành',
-        'overdue'     => 'Đã quá hạn',
+        'list'            => 'Danh sách',
+        'module'          => 'Công việc',
+        'search'          => 'tìm kiếm công việc...',
+        'pending'         => 'Chưa xử lý',
+        'in_progress'     => 'Đang tiến hành',
+        'completed'       => 'Đã hoàn thành',
+        'overdue'         => 'Đã quá hạn',
+        'title'           => 'Tiêu đề',
+        'start_date'      => 'Ngày bắt đầu',
+        'end_date'        => 'Ngày kết thúc',
+        'assigned_staff'  => 'Nhân viên được giao',
+        'progress'        => 'Tiến trình',
+        'status'          => 'Trạng thái',
+        'customer'        => 'Khách hàng',
+        'employee_create' => 'Người tạo',
+        'description'     => 'Nội dung',
+        'status_customer' => 'Trạng thái khách hàng',
     ],
     'customer_service' => [
         'customer'        => 'Khách hàng',
@@ -134,6 +144,8 @@ return [
         'start_time'       => 'chọn giờ bắt đầu',
         'end_time'         => 'chọn giờ kết thúc',
         'date_appointment' => 'chọn ngày bắt đầu',
+        'title'            => 'nhập tiêu đề...',
+
     ],
     'vesion' => [
         'name'   => 'Loyal Hub version @2025',

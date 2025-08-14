@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\View\View;
+
 class TaskController extends Controller
 {
-    public function index()
+    /**
+     * Return view index
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index(): View
     {
-        return view('work.index');
+        $employees = User::where('id', '!=', auth()->id())->get();
+
+        return view('work.index', compact('employees'));
     }
+
+    public function create() {}
 }

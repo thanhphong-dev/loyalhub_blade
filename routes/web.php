@@ -73,6 +73,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/update-status/{id}', [CustomerController::class, 'updateStatus'])->name('customers.update-status')->can('customers.update-status');
         Route::delete('/destroy/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy')->can('customers.destroy');
         Route::get('/contact', [CustomerController::class, 'customerContact'])->name('customers.contact')->can('customers.contact');
+        Route::get('/assigned/{staffId}', [CustomerController::class, 'getStatusesByStaff'])->name('customers.assigned');
+        Route::get('/by-status/{staffId}/{status}', [CustomerController::class, 'getByStatus'])->name('customers.by-status');
     });
 
     // customer appointment
@@ -98,5 +100,8 @@ Route::middleware('auth')->group(function () {
     // task
     Route::prefix('tasks')->group(function () {
         Route::get('/index', [TaskController::class, 'index'])->name('tasks.index');
+        Route::post('/create', [TaskController::class, 'create'])->name('tasks.create');
+        Route::post('/uodate', [TaskController::class, 'create'])->name('tasks.update');
+        Route::delete('/destroy/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
 });

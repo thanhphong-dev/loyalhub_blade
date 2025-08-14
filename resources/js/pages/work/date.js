@@ -4,7 +4,17 @@ import { Vietnamese } from "flatpickr/dist/l10n/vn.js";
 $(document).ready(function(){
     flatpickr("#date", {
         disableMobile: true,
-         locale: Vietnamese
+        locale: Vietnamese
+    });
+
+    flatpickr("#start_date", {
+        disableMobile: true,
+        locale: Vietnamese
+    });
+
+    flatpickr("#end_date", {
+        disableMobile: true,
+        locale: Vietnamese
     });
 
     flatpickr("#start_time", {

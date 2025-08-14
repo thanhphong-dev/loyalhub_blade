@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum TaskStatus
+enum TaskStatus: int
 {
     case PENDING     = 0;
     case IN_PROGRESS = 1;
@@ -27,5 +27,12 @@ enum TaskStatus
             self::COMPLETED   => 'bg-success',
             self::OVERDUE     => 'bg-danger',
         };
+    }
+
+    public static function groupPending(): array
+    {
+        return [
+            self::PENDING,
+        ];
     }
 }

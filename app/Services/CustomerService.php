@@ -28,6 +28,27 @@ class CustomerService
         return $this->customerRepository->getContact($perPage);
     }
 
+    /**
+     * Get statuses for staff
+     *
+     * @param  int  $staffId
+     */
+    public function getStatusesForStaff(int $staffId)
+    {
+        return $this->customerRepository->getStatusesByStaff($staffId);
+    }
+
+    /**
+     * Get customers for staff by status
+     *
+     * @param  int  $staffId
+     * @param  int  $status
+     */
+    public function getCustomersForStaffByStatus(int $staffId, int $status)
+    {
+        return $this->customerRepository->getCustomersByStatus($staffId, $status);
+    }
+
     public function createCustomer(array $data)
     {
         return $this->customerRepository->create($data);
