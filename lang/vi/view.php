@@ -2,6 +2,7 @@
 
 return [
     'task' => [
+        'tag'             => '#TASK',
         'list'            => 'Danh sách',
         'module'          => 'Công việc',
         'search'          => 'tìm kiếm công việc...',
@@ -111,6 +112,7 @@ return [
         'service'  => 'Dịch vụ',
         'dowload'  => 'Tải file',
         'show_all' => 'Xem tất cả',
+        'detail'   => 'Xem chi tiết',
     ],
     'notyf' => [
         'create'                => 'Thêm mới dữ liệu thành công',

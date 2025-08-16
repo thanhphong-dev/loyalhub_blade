@@ -75,10 +75,10 @@ class CustomerController extends Controller
      * @param  int  $status
      * @return JsonResponse
      */
-    public function getByStatus(int $staffId, int $status): JsonResponse
+    public function getByStatus(int $staffId, int $status, ?int $taskId = null): JsonResponse
     {
         try {
-            $data = $this->customerService->getCustomersForStaffByStatus($staffId, $status);
+            $data = $this->customerService->getCustomersForStaffByStatus($staffId, $status, $taskId);
 
             return $this->success($data, __('view.notyf.get_data'));
         } catch (Exception $e) {

@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Enums\CustomerStatus;
 use App\Interfaces\BaseRepositoryInterface;
 use App\Models\Customer;
+use App\Models\Task;
 use Illuminate\Database\Eloquent\Model;
 
 class CustomerRepository implements BaseRepositoryInterface
@@ -63,10 +64,24 @@ class CustomerRepository implements BaseRepositoryInterface
         });
     }
 
-    public function getCustomersByStatus(int $sraffId, int $status)
+    public function getCustomersByStatus(int $staffId, int $status, ?int $taskId = null)
     {
-        return Customer::where('assigned_staff_id', $sraffId)
+        // Lấy toàn bộ customer_ids đã assign trong Task có status_customer = $status
+        $query = Task::where('status_customer', $status);
+
+        // 🔹 Nếu đang edit → loại trừ task hiện tại
+        if ($taskId) {
+            $query->where('id', '!=', $taskId);
+        }
+
+        $assignedCustomerIds = $query->pluck('customer_ids')
+            ->flatten(1)   // gộp các array
+            ->unique()
+            ->toArray();
+
+        return Customer::where('assigned_staff_id', $staffId)
             ->where('status', $status)
+            ->whereNotIn('id', $assignedCustomerIds)
             ->select('id', 'fullname')
             ->get();
     }

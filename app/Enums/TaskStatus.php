@@ -9,7 +9,7 @@ enum TaskStatus: int
     case COMPLETED   = 2;
     case OVERDUE     = 3;
 
-    public function lable()
+    public function label()
     {
         return match ($this) {
             self::PENDING     => 'Chưa xử lý',
@@ -33,6 +33,14 @@ enum TaskStatus: int
     {
         return [
             self::PENDING,
+        ];
+    }
+
+    public static function groupInProgress()
+    {
+        return [
+            self::PENDING,
+            self::IN_PROGRESS,
         ];
     }
 }

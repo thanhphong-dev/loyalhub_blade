@@ -44,9 +44,9 @@ class CustomerService
      * @param  int  $staffId
      * @param  int  $status
      */
-    public function getCustomersForStaffByStatus(int $staffId, int $status)
+    public function getCustomersForStaffByStatus(int $staffId, int $status, ?int $taskId = null)
     {
-        return $this->customerRepository->getCustomersByStatus($staffId, $status);
+        return $this->customerRepository->getCustomersByStatus($staffId, $status, $taskId);
     }
 
     public function createCustomer(array $data)

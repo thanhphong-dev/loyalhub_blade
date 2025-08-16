@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\CustomerStatus;
 use App\Enums\TaskStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
@@ -27,11 +28,12 @@ class TaskRequest extends FormRequest
             'title'             => ['required', 'string', 'max:255'],
             'start_date'        => ['required', 'date'],
             'end_date'          => ['required', 'date'],
-            'status'            => ['required', new Enum(TaskStatus::class)],
+            'status'            => ['required', 'integer', new Enum(TaskStatus::class)],
             'description'       => ['nullable', 'string'],
             'assigned_staff_id' => ['required', 'integer', 'exists:users,id'],
             'customer_ids'      => ['required', 'array', 'min:1'],
             'customer_ids.*'    => ['integer', 'exists:customers,id'],
+            'status_customer'   => ['required', 'integer', new Enum(CustomerStatus::class)],
         ];
     }
 

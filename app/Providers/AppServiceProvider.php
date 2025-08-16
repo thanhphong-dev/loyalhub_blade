@@ -9,9 +9,11 @@ use App\Enums\CustomerStatusPayment;
 use App\Enums\ServiceStatus;
 use App\Enums\TaskStatus;
 use App\Models\Customer;
+use App\Models\Task;
 use App\Models\User;
 use App\Observers\CustomerObserver;
 use App\Observers\EmployeeObserver;
+use App\Observers\TaskObserver;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         // observer
         User::observe(EmployeeObserver::class);
         Customer::observe(CustomerObserver::class);
+        Task::observe(TaskObserver::class);
 
         // view share
         View::share('serviceStatus', ServiceStatus::cases());

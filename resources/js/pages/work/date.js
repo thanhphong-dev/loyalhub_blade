@@ -17,6 +17,16 @@ $(document).ready(function(){
         locale: Vietnamese
     });
 
+    flatpickr("#edit-start_date", {
+        disableMobile: true,
+        locale: Vietnamese
+    });
+
+    flatpickr("#edit-end_date", {
+        disableMobile: true,
+        locale: Vietnamese
+    });
+
     flatpickr("#start_time", {
         enableTime: true,
         noCalendar: true,

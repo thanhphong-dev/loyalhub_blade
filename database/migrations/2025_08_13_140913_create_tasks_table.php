@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->decimal('progress', 5, 0)->default(0);
             $table->integer('status');
+            $table->integer('status_customer');
             $table->json('customer_ids');
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
